@@ -194,5 +194,38 @@ export const CLOUDINARY_CLOUD_NAME = 'your-cloud-name';
 
 ---
 
+## 🤝 Contributing & Branching Workflow
+
+We welcome all contributions! Please check out [`CONTRIBUTING.md`](CONTRIBUTING.md) for full guidelines.
+
+### Quick Workflow
+1. **Fork** the repository & clone locally.
+2. **Create a branch**:
+   ```bash
+   git checkout -b feat/your-feature-name
+   # Or for bug fixes:
+   git checkout -b fix/your-bug-fix
+   ```
+3. **Develop & Test**: `npm run dev` and `npx tsc --noEmit`
+4. **Commit & Push**:
+   ```bash
+   git commit -m "feat: add new feature"
+   git push origin feat/your-feature-name
+   ```
+5. Open a **Pull Request (PR)** on GitHub.
+
+```mermaid
+gitGraph
+    commit id: "main"
+    branch feat/your-feature
+    checkout feat/your-feature
+    commit id: "New vibe / track"
+    checkout main
+    merge feat/your-feature id: "Merged PR"
+```
+
+---
+
 ## 📜 License
 MIT License © 2026 Animesh Tripathi
+
