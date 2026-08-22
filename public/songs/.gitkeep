@@ -1,0 +1,3 @@
+# Place your .mp3 song files in this directory (public/songs/)
+# Example: 295_bass_remix.mp3
+# Then reference it in src/data/tracks.ts with `localSrc: '295_bass_remix.mp3'`

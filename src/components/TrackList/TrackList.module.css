@@ -1,0 +1,200 @@
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px 60px;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-family: var(--font-head);
+  font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.title span {
+  background: linear-gradient(90deg, var(--col-neon-orange), var(--col-neon-amber));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.headerRight { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+.vibePill {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  border-radius: var(--radius-pill);
+  padding: 5px 14px;
+  letter-spacing: 0.3px;
+  transition: var(--transition);
+}
+
+.nowDot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--col-neon-green);
+  box-shadow: 0 0 8px var(--col-neon-green);
+  animation: pulse 1.8s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.ctrlBtn {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--col-text-muted);
+  border: 1px solid var(--col-border);
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  background: rgba(255,255,255,0.04);
+  transition: var(--transition);
+  letter-spacing: 0.3px;
+}
+
+.ctrlBtn:hover, .ctrlBtn.active {
+  color: var(--col-neon-orange);
+  border-color: rgba(255,107,0,0.35);
+  background: rgba(255,107,0,0.08);
+}
+
+/* ── Column header ── */
+.colHeader {
+  display: grid;
+  grid-template-columns: 40px 1fr 160px 60px;
+  gap: 12px;
+  padding: 6px 16px;
+  border-bottom: 1px solid var(--col-border);
+  margin-bottom: 6px;
+}
+
+.th {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--col-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ── Track list ── */
+.list { display: flex; flex-direction: column; gap: 2px; }
+
+/* ── Track item ── */
+.item {
+  display: grid;
+  grid-template-columns: 40px 1fr 160px 60px;
+  gap: 12px;
+  align-items: center;
+  padding: 11px 16px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  animation: trackIn 0.32s ease both;
+}
+
+.item:hover {
+  background: rgba(255,255,255,0.04);
+  border-color: var(--col-border);
+}
+
+.item.playing {
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+/* ── Number ── */
+.num {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--col-text-dim);
+  font-weight: 600;
+}
+
+.item.playing .num { color: var(--accent); }
+
+/* ── Wave animation ── */
+.wave {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+  height: 16px;
+}
+
+.wave i {
+  display: block;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--accent);
+  animation: wave 1s ease-in-out infinite;
+}
+
+.wave i:nth-child(1) { animation-delay: 0s;    height: 55%; }
+.wave i:nth-child(2) { animation-delay: 0.1s;  height: 100%; }
+.wave i:nth-child(3) { animation-delay: 0.2s;  height: 40%; }
+.wave i:nth-child(4) { animation-delay: 0.06s; height: 78%; }
+
+/* ── Track info ── */
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.trackName {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--col-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item.playing .trackName { color: var(--accent); }
+
+.gurm {
+  font-size: 0.7rem;
+  color: var(--col-text-dim);
+}
+
+/* ── Artist ── */
+.artist {
+  font-size: 0.8rem;
+  color: var(--col-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Duration ── */
+.dur {
+  text-align: right;
+  font-size: 0.8rem;
+  color: var(--col-text-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .colHeader { display: none; }
+  .item { grid-template-columns: 36px 1fr auto; }
+  .artist { display: none; }
+}

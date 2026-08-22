@@ -1,0 +1,100 @@
+/* ═══════════════════════════════════════════════════
+   globals.css — Design tokens, reset, base styles
+═══════════════════════════════════════════════════ */
+
+/* ── Google Fonts loaded via index.html ── */
+
+/* ── Design Tokens ── */
+:root {
+  --col-bg:           #0a0a0f;
+  --col-bg2:          #0f0f1a;
+  --col-surface:      #13131f;
+  --col-surface2:     #1a1a2e;
+  --col-border:       rgba(255,255,255,0.07);
+  --col-border-hover: rgba(255,255,255,0.13);
+
+  --col-neon-orange:  #ff6b00;
+  --col-neon-amber:   #ffae00;
+  --col-neon-green:   #00ff7f;
+  --col-neon-teal:    #00d4aa;
+  --col-neon-purple:  #9b59ff;
+  --col-neon-pink:    #ff3fa4;
+  --col-neon-blue:    #00b4ff;
+
+  --col-text:         #f0e8d5;
+  --col-text-muted:   #9a8f7e;
+  --col-text-dim:     #5a5264;
+
+  --font-main:        'Outfit', sans-serif;
+  --font-head:        'Rajdhani', sans-serif;
+
+  --radius-sm:        8px;
+  --radius-md:        14px;
+  --radius-lg:        22px;
+  --radius-xl:        32px;
+  --radius-pill:      999px;
+
+  --shadow-orange:    0 0 24px rgba(255,107,0,0.5);
+  --shadow-pink:      0 0 24px rgba(255,63,164,0.5);
+  --shadow-purple:    0 0 24px rgba(155,89,255,0.5);
+  --shadow-teal:      0 0 24px rgba(0,212,170,0.5);
+
+  --player-h:         92px;
+  --nav-h:            56px;
+  --transition:       0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-main);
+  background: var(--col-bg);
+  color: var(--col-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding-bottom: calc(var(--player-h) + 32px);
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; color: inherit; }
+ol, ul { list-style: none; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--col-bg2); }
+::-webkit-scrollbar-thumb { background: rgba(255,107,0,0.35); border-radius: var(--radius-pill); }
+
+/* ── Utility animations ── */
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(8px); }
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.5); opacity: 0.5; }
+}
+@keyframes wave {
+  0%, 100% { height: 30%; }
+  50%       { height: 100%; }
+}
+@keyframes spinBorder {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes trackIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
