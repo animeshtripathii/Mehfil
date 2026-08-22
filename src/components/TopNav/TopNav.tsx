@@ -26,21 +26,23 @@ const TopNav: React.FC = () => {
   return (
     <nav className={styles.nav} aria-label="Main Navigation">
       {/* Logo — left */}
-      <div className={styles.logo}>
-        <span className={styles.logoIcon}>🎵</span>
-        <span className={styles.logoText}>
-          Meh<span className={styles.logoAccent}>fil</span>
-        </span>
-      </div>
+      <div className={styles.logoContainer}>
+        <div className={styles.logo}>
+          <span className={styles.logoIcon}>🎵</span>
+          <span className={styles.logoText}>
+            Meh<span className={styles.logoAccent}>fil</span>
+          </span>
+        </div>
 
-      {/* Digital clock — right */}
-      <div className={styles.clock} aria-label="Current time" role="timer">
-        <span className={styles.clockDigits}>
-          {time.h}
-          <span className={styles.colon}>:</span>
-          {time.m}
-        </span>
-        <span className={styles.clockSec}>{time.s}</span>
+        {/* Digital clock — left below logo on image itself */}
+        <div className={styles.clock} aria-label="Current time" role="timer">
+          <span className={styles.clockDigits}>
+            {time.h}
+            <span className={styles.colon}>:</span>
+            {time.m}
+          </span>
+          <span className={styles.clockSec}>{time.s}</span>
+        </div>
       </div>
     </nav>
   );

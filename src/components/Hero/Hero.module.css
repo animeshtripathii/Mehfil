@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center;
   overflow: hidden;
 
@@ -47,9 +47,8 @@
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  padding: 0 24px;
-  /* Push content up a bit from the player */
-  margin-bottom: calc(var(--player-h) + 60px);
+  padding: calc(var(--nav-h) + 40px) 24px calc(var(--player-h) + 40px);
+  margin: auto 0;
 }
 
 /* ══════════════════════════════════════

@@ -17,6 +17,12 @@
   border-bottom: 1px solid var(--col-border);
 }
 
+.logoContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
 /* ── Logo ── */
 .logo {
   display: flex;
@@ -41,10 +47,20 @@
 
 /* ── Digital Clock ── */
 .clock {
+  position: absolute;
+  top: calc(var(--nav-h) - 12px);
+  left: 0;
   display: flex;
   align-items: baseline;
   gap: 4px;
   user-select: none;
+  background: rgba(10, 10, 15, 0.45);
+  backdrop-filter: blur(12px) saturate(1.5);
+  -webkit-backdrop-filter: blur(12px) saturate(1.5);
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  z-index: 999;
 }
 
 .clockDigits {
