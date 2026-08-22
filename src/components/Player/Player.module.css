@@ -38,7 +38,7 @@
 .pill:hover {
   box-shadow:
     0 10px 50px rgba(0, 0, 0, 0.7),
-    0 0 0 1px rgba(255, 107, 0, 0.15),
+    0 0 0 1px color-mix(in srgb, var(--app-accent, #ff6b00) 20%, transparent),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
@@ -78,10 +78,11 @@
   border-radius: 12px;
   background: conic-gradient(
     from 0deg,
-    var(--col-neon-orange),
-    var(--col-neon-amber),
+    var(--app-accent, var(--col-neon-orange)),
+    color-mix(in srgb, var(--app-accent, var(--col-neon-orange)) 60%, #fff),
     transparent 60%
   );
+  transition: background 0.5s ease;
   animation: spinBorder 2.5s linear infinite;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -156,26 +157,26 @@
   color: rgba(240, 232, 213, 0.45);
 }
 
-/* Play/Pause — orange glowing circle */
+/* Play/Pause — themed glowing circle */
 .playBtn {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: var(--col-neon-orange);
+  background: var(--app-accent, var(--col-neon-orange));
   color: #000 !important;
   font-size: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 18px rgba(255, 107, 0, 0.55);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 0 18px var(--app-glow, rgba(255, 107, 0, 0.55));
+  transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.5s ease;
   flex-shrink: 0;
 }
 
 .playBtn:hover {
   transform: scale(1.08);
-  box-shadow: 0 0 28px rgba(255, 107, 0, 0.75);
-  background: var(--col-neon-orange);
+  box-shadow: 0 0 32px var(--app-glow, rgba(255, 107, 0, 0.75));
+  background: var(--app-accent, var(--col-neon-orange));
   color: #000;
 }
 
@@ -215,10 +216,14 @@
 
 .progressFill {
   height: 100%;
-  background: linear-gradient(90deg, var(--col-neon-orange) 0%, var(--col-neon-amber) 100%);
+  background: linear-gradient(
+    90deg,
+    var(--app-accent, var(--col-neon-orange)) 0%,
+    color-mix(in srgb, var(--app-accent, var(--col-neon-orange)) 70%, #fff) 100%
+  );
   border-radius: 999px;
   pointer-events: none;
-  transition: width 0.25s linear;
+  transition: width 0.25s linear, background 0.5s ease;
 }
 
 .progressThumb {
@@ -229,10 +234,10 @@
   height: 12px;
   background: #fff;
   border-radius: 50%;
-  box-shadow: 0 0 6px rgba(255, 107, 0, 0.7);
+  box-shadow: 0 0 8px var(--app-glow, rgba(255, 107, 0, 0.7));
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, box-shadow 0.5s ease;
 }
 
 .progressTrack:hover .progressThumb { opacity: 1; }

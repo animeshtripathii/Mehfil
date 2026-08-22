@@ -12,6 +12,13 @@ import styles from './App.module.css';
 
 type NavPage = 'home' | VibeId;
 
+/* Matches the PAGE_CONFIG in Hero.tsx */
+const THEME: Record<string, { accent: string; glow: string }> = {
+  home: { accent: '#ffae00', glow: 'rgba(255,174,0,0.45)' },
+  '0':  { accent: '#ff3fa4', glow: 'rgba(255,63,164,0.50)' },
+  '1':  { accent: '#ff6b00', glow: 'rgba(255,107,0,0.55)'  },
+};
+
 const App: React.FC = () => {
   const player = useAudioPlayer();
 
@@ -30,7 +37,7 @@ const App: React.FC = () => {
     toastTimer.current = setTimeout(() => setToastVisible(false), 2800);
   }, []);
 
-  // ── Nav handler — switches page + selects vibe when a playlist is chosen ──
+  // ── Nav handler ──
   const handleNavChange = useCallback((page: NavPage) => {
     setNavPage(page);
     if (page !== 'home') {
@@ -40,18 +47,23 @@ const App: React.FC = () => {
     }
   }, [player, showToast]);
 
+  const theme = THEME[String(navPage)] ?? THEME['home'];
+
   return (
-    <div className={styles.app}>
-      {/* Fixed top nav + clock */}
+    <div
+      className={styles.app}
+      style={{
+        '--app-accent': theme.accent,
+        '--app-glow':   theme.glow,
+      } as React.CSSProperties}
+    >
       <TopNav />
 
-      {/* Full-viewport hero with embedded pill nav */}
       <Hero
         navPage={navPage}
         onNavChange={handleNavChange}
       />
 
-      {/* Fixed bottom player */}
       <Player
         track={player.currentTrack}
         vibeData={player.currentVibeData}

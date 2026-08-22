@@ -1,5 +1,6 @@
 /* ═══════════════════════════════════════════════════
    Hero.module.css — Single-page fullscreen hero
+   Dynamic theming via CSS custom properties set inline
 ═══════════════════════════════════════════════════ */
 
 .hero {
@@ -11,85 +12,97 @@
   justify-content: center;
   text-align: center;
   overflow: hidden;
-  background: url('/assets/home_page.jpeg') center / cover no-repeat;
+
+  /* Background driven by --hero-bg, fades on change */
+  background-image: var(--hero-bg, url('/assets/home_page.jpeg'));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition:
+    background-image 0.6s ease;
 }
 
+/* Dark gradient overlay — tinted by active vibe colour */
 .overlay {
   position: absolute;
   inset: 0;
+  z-index: 0;
   background:
     linear-gradient(to bottom,
-      rgba(10,10,15,0.42)  0%,
-      rgba(10,10,15,0.12) 38%,
-      rgba(10,10,15,0.62) 78%,
+      rgba(10,10,15,0.40)  0%,
+      rgba(10,10,15,0.10) 35%,
+      rgba(10,10,15,0.60) 75%,
       rgba(10,10,15,1)    100%),
-    radial-gradient(ellipse at 30% 60%, rgba(255,107,0,0.08) 0%, transparent 60%);
-  z-index: 0;
+    radial-gradient(ellipse at 35% 55%,
+      var(--hero-overlay, rgba(255,150,0,0.08)) 0%,
+      transparent 65%);
+  transition: background 0.7s ease;
 }
 
+/* ── Centred content stack ── */
 .content {
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
-  padding: var(--nav-h) 24px calc(var(--player-h) + 80px);
-  animation: fadeSlideDown 0.9s ease both;
+  gap: 16px;
+  padding: 0 24px;
+  /* Push content up a bit from the player */
+  margin-bottom: calc(var(--player-h) + 60px);
 }
 
-/* ══════════════════════════════════
-   Pill nav — sits above the title
-══════════════════════════════════ */
+/* ══════════════════════════════════════
+   Pill nav bar — above the title
+══════════════════════════════════════ */
 .pillNav {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   padding: 5px 8px;
-  background: rgba(10, 8, 16, 0.58);
-  backdrop-filter: blur(20px) saturate(1.5);
-  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  background: rgba(8, 6, 14, 0.62);
+  backdrop-filter: blur(22px) saturate(1.6);
+  -webkit-backdrop-filter: blur(22px) saturate(1.6);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 999px;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.5);
+  /* Subtle glow matching active theme */
+  transition: box-shadow 0.5s ease;
 }
 
 .navPill {
   display: flex;
   align-items: center;
   gap: 5px;
-  padding: 5px 14px;
+  padding: 6px 16px;
   border-radius: 999px;
   border: 1px solid transparent;
   background: transparent;
   font-family: var(--font-main);
   font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.3px;
-  color: rgba(240, 232, 213, 0.45);
+  letter-spacing: 0.4px;
+  color: rgba(240, 232, 213, 0.42);
   cursor: pointer;
-  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   white-space: nowrap;
+  transition:
+    color        0.25s ease,
+    background   0.25s ease,
+    border-color 0.25s ease,
+    box-shadow   0.25s ease;
 }
 
 .navPill:hover {
-  color: rgba(240, 232, 213, 0.85);
-  background: rgba(255, 255, 255, 0.07);
+  color: rgba(240, 232, 213, 0.88);
+  background: rgba(255, 255, 255, 0.08);
 }
 
-/* Mehfil (home) active — clean white */
+/* Active pill — uses the per-pill accent via --pill-accent / --pill-glow */
 .navPill.navPillActive {
   color: #fff;
-  background: rgba(255, 255, 255, 0.11);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-/* Vibe pills active — use their accent colour */
-.navPill.navPillActive[style] {
-  background: color-mix(in srgb, var(--accent, #fff) 16%, transparent);
-  border-color: color-mix(in srgb, var(--accent, #fff) 55%, transparent);
-  box-shadow: 0 0 14px var(--glow, transparent);
-  color: #fff;
+  background: color-mix(in srgb, var(--pill-accent, #ffae00) 18%, transparent);
+  border-color: color-mix(in srgb, var(--pill-accent, #ffae00) 55%, transparent);
+  box-shadow: 0 0 16px var(--pill-glow, rgba(255,174,0,0.4));
 }
 
 .navEmoji {
@@ -97,27 +110,46 @@
   line-height: 1;
 }
 
-/* ══════════════════════════════════
-   Title + subtitle
-══════════════════════════════════ */
+/* ══════════════════════════════════════
+   Title — animates in on page change
+══════════════════════════════════════ */
 .title {
   font-family: var(--font-head);
-  font-size: clamp(2.2rem, 6.5vw, 5rem);
+  font-size: clamp(2.2rem, 6.8vw, 5.2rem);
   font-weight: 700;
   color: #fff;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   line-height: 1.1;
-  text-shadow:
-    0 0 60px rgba(255, 200, 100, 0.18),
-    0 2px 40px rgba(0, 0, 0, 0.6);
   margin: 0;
+  text-shadow:
+    0 0 70px var(--hero-glow, rgba(255,174,0,0.25)),
+    0 2px 40px rgba(0, 0, 0, 0.65);
+  animation: titleIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* ══════════════════════════════════════
+   Subtitle
+══════════════════════════════════════ */
 .subtitle {
   font-family: var(--font-main);
   font-size: 0.63rem;
   font-weight: 500;
   letter-spacing: 3px;
-  color: rgba(240, 232, 213, 0.4);
+  color: rgba(240, 232, 213, 0.38);
   text-transform: uppercase;
+  animation: titleIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+}
+
+/* Entrance animation for title/subtitle on page switch */
+@keyframes titleIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
