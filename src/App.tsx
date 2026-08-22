@@ -64,12 +64,9 @@ const App: React.FC = () => {
 
   return (
     <div className={styles.app}>
-      <TopNav onShowToast={showToast} />
+      <TopNav />
 
-      <Hero
-        onPlayNow={handlePlayNow}
-        onExplore={handleExplore}
-      />
+      <Hero />
 
       <main className={styles.main} id="main" role="main">
         <VibeSelector
