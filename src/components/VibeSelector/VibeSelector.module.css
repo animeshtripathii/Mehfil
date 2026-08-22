@@ -1,184 +1,126 @@
-.section {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 60px 24px 0;
+/* ═══════════════════════════════════════════════════
+   VibeSelector.module.css
+   Fixed floating pill bar — sits above the player
+═══════════════════════════════════════════════════ */
+
+/* Fixed bar floating above the player */
+.bar {
+  position: fixed;
+  bottom: calc(var(--player-h) + 18px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 940;
+  pointer-events: none;
 }
 
-.header { text-align: center; margin-bottom: 40px; }
-
-.title {
-  font-family: var(--font-head);
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
-  font-weight: 700;
+/* The pill group container — dark glassmorphism capsule */
+.inner {
+  pointer-events: all;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 8px;
+  padding: 6px 10px;
+  background: rgba(12, 10, 18, 0.72);
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 999px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-.title span {
-  background: linear-gradient(90deg, var(--col-neon-orange), var(--col-neon-amber));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.sub { font-size: 0.88rem; color: var(--col-text-muted); }
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 22px;
-}
-
-/* ── Card ── */
-.card {
-  position: relative;
-  background: var(--col-surface);
-  border: 1px solid var(--col-border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
+/* ── Each playlist pill ── */
+.pill {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 14px 6px 7px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
   cursor: pointer;
-  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
-  display: flex;
-  flex-direction: column;
+  transition: background 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+  color: rgba(240, 232, 213, 0.5);
+  white-space: nowrap;
+  font-family: var(--font-main);
 }
 
-.card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(255,107,0,0.25);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 24px var(--glow);
+.pill:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(240, 232, 213, 0.85);
 }
 
-.card.active {
-  border-color: var(--accent) !important;
-  box-shadow: 0 0 0 1px var(--accent), 0 0 24px var(--glow) !important;
+/* Active — glows with the vibe accent colour */
+.pill.active {
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  box-shadow: 0 0 14px var(--glow);
+  color: #fff;
 }
 
-/* ── Image ── */
-.imgWrap {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16/9;
+/* ── Circular thumbnail ── */
+.thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
   overflow: hidden;
+  flex-shrink: 0;
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  transition: border-color 0.22s ease, box-shadow 0.22s ease;
 }
 
-.img {
-  width: 100%; height: 100%;
+.pill.active .thumb {
+  border-color: var(--accent);
+  box-shadow: 0 0 8px var(--glow);
+}
+
+.thumbImg {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
+  display: block;
+  transition: transform 0.3s ease;
 }
 
-.card:hover .img { transform: scale(1.06); }
+.pill:hover .thumbImg { transform: scale(1.1); }
 
-.imgGlow {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, color-mix(in srgb, var(--accent) 60%, transparent) 0%, transparent 60%);
-  opacity: 0.65;
-  transition: opacity 0.3s ease;
-}
-
-.card:hover .imgGlow { opacity: 0.9; }
-
-/* ── Body ── */
-.body {
-  padding: 18px 20px 14px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-.emoji { font-size: 2rem; line-height: 1; }
-
-.cardTitle {
-  font-family: var(--font-head);
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--col-text);
-  letter-spacing: 0.4px;
-}
-
-.cardSub {
-  font-size: 0.8rem;
-  color: var(--col-neon-amber);
-  font-weight: 600;
-}
-
-.desc {
-  font-size: 0.83rem;
-  color: var(--col-text-muted);
-  line-height: 1.5;
-  flex: 1;
-}
-
-/* ── Tags ── */
-.tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
-
-.tag {
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.4px;
-  padding: 3px 9px;
-  border-radius: var(--radius-pill);
-  text-transform: uppercase;
-}
-
-.tagRomantic   { background: rgba(255,63,164,0.14); color: var(--col-neon-pink);   border: 1px solid rgba(255,63,164,0.32); }
-.tagDreamy     { background: rgba(155,89,255,0.14); color: var(--col-neon-purple); border: 1px solid rgba(155,89,255,0.32); }
-.tagLofi       { background: rgba(0,212,170,0.12);  color: var(--col-neon-teal);   border: 1px solid rgba(0,212,170,0.3); }
-.tagHighway    { background: rgba(255,107,0,0.14);  color: var(--col-neon-orange); border: 1px solid rgba(255,107,0,0.32); }
-.tagBass       { background: rgba(0,255,127,0.1);   color: var(--col-neon-green);  border: 1px solid rgba(0,255,127,0.26); }
-.tagNightDrive { background: rgba(0,180,255,0.12);  color: var(--col-neon-blue);   border: 1px solid rgba(0,180,255,0.3); }
-.tagDesi       { background: rgba(255,107,0,0.13);  color: var(--col-neon-orange); border: 1px solid rgba(255,107,0,0.28); }
-.tagTractor    { background: rgba(255,174,0,0.13);  color: var(--col-neon-amber);  border: 1px solid rgba(255,174,0,0.28); }
-.tagClassic    { background: rgba(255,63,164,0.1);  color: var(--col-neon-pink);   border: 1px solid rgba(255,63,164,0.28); }
-.tag00s        { background: rgba(0,180,255,0.1);   color: var(--col-neon-blue);   border: 1px solid rgba(0,180,255,0.28); }
-.tagRadio      { background: rgba(0,212,170,0.09);  color: var(--col-neon-teal);   border: 1px solid rgba(0,212,170,0.28); }
-
-/* ── Footer ── */
-.footer {
+/* ── Label ── */
+.label {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-top: 8px;
-  padding-top: 12px;
-  border-top: 1px solid var(--col-border);
+  gap: 5px;
 }
 
-.trackCount { font-size: 0.76rem; color: var(--col-text-dim); font-weight: 600; }
+.emoji {
+  font-size: 0.85rem;
+  line-height: 1;
+}
 
-.playBtn {
-  font-size: 0.8rem;
+.name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+/* ── Track count badge ── */
+.count {
+  font-size: 0.6rem;
   font-weight: 700;
-  color: #000;
-  background: var(--accent);
-  border-radius: var(--radius-pill);
-  padding: 7px 18px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(240, 232, 213, 0.35);
+  letter-spacing: 0.3px;
+  transition: background 0.22s ease, color 0.22s ease;
 }
 
-.playBtn:hover {
-  transform: scale(1.07);
-  box-shadow: 0 0 18px var(--glow);
-  color: #000;
+.pill.active .count {
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  color: var(--accent);
 }
-
-/* ── Active bar ── */
-.activeBar {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
-}
-
-.card.active .activeBar { transform: scaleX(1); }
 
 @media (max-width: 480px) {
-  .grid { grid-template-columns: 1fr; }
+  .name { font-size: 0.75rem; }
+  .inner { gap: 5px; padding: 5px 8px; }
 }
