@@ -85,7 +85,9 @@
   margin-left: 1px;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
+  .nav { padding: 0 14px; }
+  .clock { top: calc(var(--nav-h) - 14px); left: 14px; }
   .clockSec { display: none; }
   .clockDigits { font-size: 0.9rem; }
 }

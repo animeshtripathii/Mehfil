@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+﻿import React, { useEffect, useRef } from 'react';
 import type { VibeId } from '../../types';
 import { VIBES } from '../../data/tracks';
 import styles from './VibeModal.module.css';
@@ -9,34 +9,70 @@ interface VibeModalProps {
   onSelectVibe: (id: VibeId) => void;
 }
 
-const BUTTON_STYLES: Record<number, { grad: string; text: string }> = {
-  0: { grad: 'linear-gradient(135deg, #ffae00 0%, #ff6b00 100%)', text: 'ਬਜਾਓ ▶' },
-  1: { grad: 'linear-gradient(135deg, #ff3fa4 0%, #ff6b00 100%)', text: 'ਚਲਾਓ ▶' },
-  2: { grad: 'linear-gradient(135deg, #ff6b00 0%, #ffae00 100%)', text: 'ENTER ▶' },
+const BUTTON_CFG: Record<number, { label: string; g1: string; g2: string }> = {
+  0: { label: 'ਬਜਾਓ',      g1: '#ffae00', g2: '#ff6b00' },
+  1: { label: 'ਚਲਾਓ',      g1: '#ff3fa4', g2: '#c026d3' },
+  2: { label: 'ਸ਼ੁਰੂ ਕਰੋ', g1: '#ff6b00', g2: '#ffae00' },
 };
 
-const VibeModal: React.FC<VibeModalProps> = ({ isOpen, onClose, onSelectVibe }) => {
-  // Close on Escape key
+const CARD_TAGS: Record<number, string[]> = {
+  0: ['Yaarian', 'Desi Folk', 'Dhaba'],
+  1: ['Romantic', 'Dreamy', 'Soul'],
+  2: ['Highway', 'Bass', 'Night Drive'],
+};
+
+function ParticleCanvas() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) {
-        onClose();
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    let raf: number;
+    const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+    resize();
+    window.addEventListener('resize', resize);
+    type P = { x: number; y: number; r: number; dx: number; dy: number; a: number; da: number };
+    const ps: P[] = Array.from({ length: 55 }, () => ({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      r: Math.random() * 1.6 + 0.3,
+      dx: (Math.random() - 0.5) * 0.22,
+      dy: -(Math.random() * 0.28 + 0.04),
+      a: Math.random() * 0.45 + 0.08,
+      da: (Math.random() - 0.5) * 0.003,
+    }));
+    const tick = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (const p of ps) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,174,0,${Math.max(0.03, Math.min(0.6, p.a))})`;
+        ctx.fill();
+        p.x += p.dx; p.y += p.dy; p.a += p.da;
+        if (p.y < -8) p.y = canvas.height + 8;
+        if (p.x < -8) p.x = canvas.width + 8;
+        if (p.x > canvas.width + 8) p.x = -8;
+        if (p.a <= 0.06 || p.a >= 0.62) p.da *= -1;
       }
+      raf = requestAnimationFrame(tick);
     };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    tick();
+    return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', resize); };
+  }, []);
+  return <canvas ref={canvasRef} className={styles.particles} aria-hidden="true" />;
+}
+
+const VibeModal: React.FC<VibeModalProps> = ({ isOpen, onClose, onSelectVibe }) => {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape' && isOpen) onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
   }, [isOpen, onClose]);
 
-  // Lock body scroll when open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
 
   if (!isOpen) return null;
@@ -49,94 +85,75 @@ const VibeModal: React.FC<VibeModalProps> = ({ isOpen, onClose, onSelectVibe }) 
       aria-labelledby="modal-title"
       onClick={onClose}
     >
-      {/* Close button */}
+      <ParticleCanvas />
+      <div className={styles.orb1} aria-hidden="true" />
+      <div className={styles.orb2} aria-hidden="true" />
+
       <button
         className={styles.closeBtn}
-        onClick={(e) => {
-          e.stopPropagation();
-          onClose();
-        }}
+        onClick={e => { e.stopPropagation(); onClose(); }}
         aria-label="Close modal"
-      >
-        ✕
-      </button>
+      >✕</button>
 
-      {/* Main modal dialog */}
-      <div className={styles.dialog} onClick={(e) => e.stopPropagation()}>
-        {/* Badge */}
-        <div className={styles.badge}>
-          <span>ਮੂਡ ਚੁਣੋ</span> • <span>SELECT YOUR VIBE</span>
+      <div className={styles.dialog} onClick={e => e.stopPropagation()}>
+        <div className={styles.brand}>
+          <span className={styles.brandIcon}>🎵</span>
+          <span className={styles.brandName}>MEHFIL</span>
         </div>
 
-        {/* Title & Subtitle */}
         <h2 className={styles.title} id="modal-title">
           ਅੱਜ ਤੁਹਾਡਾ ਮੂਡ ਕਿਹੋ ਜਿਹਾ ਹੈ?
         </h2>
         <p className={styles.subtitle}>
-          Choose your music experience to get the beats rolling
+          Pick a vibe.&nbsp;&nbsp;Press play.&nbsp;&nbsp;Stay awhile.
         </p>
 
-        {/* 3 Cards Grid */}
         <div className={styles.grid}>
-          {VIBES.map((vibe) => {
-            const btnInfo = BUTTON_STYLES[vibe.id] ?? BUTTON_STYLES[0];
-
+          {VIBES.map(vibe => {
+            const btn  = BUTTON_CFG[vibe.id] ?? BUTTON_CFG[0];
+            const tags = CARD_TAGS[vibe.id]  ?? vibe.tags.slice(0, 3);
             return (
               <div
                 key={vibe.id}
                 className={styles.card}
-                style={
-                  {
-                    '--card-accent': vibe.accentColor,
-                    '--card-glow': vibe.glowColor,
-                    '--card-btn-grad': btnInfo.grad,
-                  } as React.CSSProperties
-                }
-                onClick={() => {
-                  onSelectVibe(vibe.id);
-                  onClose();
-                }}
+                style={{ '--card-accent': vibe.accentColor, '--card-glow': vibe.glowColor, '--btn-g1': btn.g1, '--btn-g2': btn.g2 } as React.CSSProperties}
+                onClick={() => { onSelectVibe(vibe.id); onClose(); }}
+                tabIndex={0}
+                role="button"
+                aria-label={`Select ${vibe.name} vibe`}
+                onKeyDown={e => { if (e.key === 'Enter') { onSelectVibe(vibe.id); onClose(); } }}
               >
-                {/* Artwork */}
                 <div className={styles.imgWrap}>
-                  <img
-                    src={vibe.art}
-                    alt={`${vibe.name} Artwork`}
-                    className={styles.img}
-                  />
-                  <div className={styles.imgGlow} />
-                  <div className={styles.cardBadge}>{vibe.emoji}</div>
+                  <img src={vibe.art} alt={`${vibe.name} artwork`} className={styles.img} />
+                  <div className={styles.imgFade} />
+                  <span className={styles.cardEmoji} aria-hidden="true">{vibe.emoji}</span>
+                  <div className={styles.artLabel}>
+                    <span className={styles.artGurmukhi}>{vibe.nameGurmukhi}</span>
+                    <span className={styles.artEn}>{vibe.name.toUpperCase()}</span>
+                  </div>
                 </div>
 
-                {/* Body */}
                 <div className={styles.body}>
-                  <h3 className={styles.cardTitle}>{vibe.nameGurmukhi}</h3>
-                  <span className={styles.cardSub}>{vibe.name}</span>
                   <p className={styles.desc}>{vibe.description}</p>
-
                   <div className={styles.tags}>
-                    {vibe.tags.map((tag) => (
-                      <span key={tag} className={styles.tag}>
-                        {tag}
-                      </span>
-                    ))}
+                    {tags.map(t => <span key={t} className={styles.tag}>{t}</span>)}
                   </div>
-
                   <button
                     className={styles.actionBtn}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onSelectVibe(vibe.id);
-                      onClose();
-                    }}
+                    onClick={e => { e.stopPropagation(); onSelectVibe(vibe.id); onClose(); }}
                   >
-                    {btnInfo.text}
+                    <span>{btn.label}</span>
+                    <span className={styles.btnArrow}>▶</span>
                   </button>
                 </div>
+
+                <div className={styles.cardGlow} aria-hidden="true" />
               </div>
             );
           })}
         </div>
+
+        <p className={styles.footer}>ਜਿੱਥੇ ਗੀਤ, ਓਥੇ ਗੱਲਾਂ।</p>
       </div>
     </div>
   );

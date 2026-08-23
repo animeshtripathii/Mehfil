@@ -27,6 +27,8 @@ export interface Track {
   durationSec: number;   // actual seconds
   /** Direct audio stream URL (e.g. from official audio CDN). */
   streamUrl?: string;
+  /** YouTube video ID for playback via the IFrame Player API. */
+  videoId?: string;
   /** High-res song artwork URL. */
   coverArt?: string;
   /** Drop your MP3 into public/songs/ and put the filename here. */

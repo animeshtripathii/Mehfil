@@ -12,12 +12,33 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 8px;
   font-family: var(--font-main);
   pointer-events: auto;
 }
 
-/* ── Live Indicator Badge Button ── */
-.badge {
+/* ── Status Badge (Non-clickable, shows count) ── */
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(34, 197, 94, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: 999px;
+  color: #22c55e;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ── GitHub Profiles Trigger Button ── */
+.githubBtn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -32,17 +53,34 @@
   font-weight: 600;
   letter-spacing: 0.3px;
   cursor: pointer;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(34, 197, 94, 0.18);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 255, 255, 0.05);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   user-select: none;
   border-style: solid;
 }
 
-.badge:hover {
+.githubBtn:hover {
   background: rgba(24, 18, 34, 0.96);
-  border-color: rgba(255, 174, 0, 0.5);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.75), 0 0 20px rgba(255, 174, 0, 0.35);
+  border-color: var(--app-accent, #ffae00);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.75), 0 0 20px var(--app-glow, rgba(255, 174, 0, 0.35));
   transform: translateY(-2px);
+}
+
+.githubBtnActive {
+  background: rgba(24, 18, 34, 0.96);
+  border-color: var(--app-accent, #ffae00);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.75), 0 0 20px var(--app-glow, rgba(255, 174, 0, 0.35));
+}
+
+.triggerGithubIcon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  transition: transform 0.25s ease;
+}
+
+.githubBtn:hover .triggerGithubIcon {
+  transform: scale(1.15) rotate(-8deg);
 }
 
 /* Pulsing Live Dot */
@@ -343,11 +381,18 @@
     z-index: 1005;
   }
 
-  .badge {
+  .githubBtn {
     padding: 5px 11px;
     font-size: 0.72rem;
     gap: 6px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7), 0 0 10px rgba(34, 197, 94, 0.2);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7), 0 0 10px rgba(255, 255, 255, 0.05);
+  }
+
+  .statusPill {
+    padding: 4px 10px;
+    font-size: 0.68rem;
+    gap: 5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
   }
 
   .popover {
