@@ -1,4 +1,4 @@
-# 🤝 Contributing to Mehfil (Punjabi Gabru Beats)
+# 🤝 Contributing to Mehfil 
 
 Thank you for your interest in contributing to **Mehfil**! Whether you want to add new Punjabi vibes, submit remixes, improve the player UI, or fix bugs, your contributions are warmly welcomed.
 

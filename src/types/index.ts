@@ -24,11 +24,15 @@ export interface Track {
   artist: string;
   dur: string;           // display string e.g. "4:23"
   durationSec: number;   // actual seconds for progress simulation
+  /** Direct audio stream URL (e.g. from official audio CDN). */
+  streamUrl?: string;
+  /** High-res song artwork URL. */
+  coverArt?: string;
   /** Drop your MP3 into public/songs/ and put the filename here.
    *  e.g.  localSrc: '295_bass_remix.mp3'
    *  Works on localhost AND on Render after deploy. */
   localSrc: string;
-  /** Optional Cloudinary fallback — only used if localSrc is empty. */
+  /** Optional Cloudinary fallback — only used if localSrc and streamUrl are empty. */
   cloudinaryId: string;
 }
 

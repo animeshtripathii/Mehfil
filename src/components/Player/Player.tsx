@@ -54,7 +54,7 @@ const Player: React.FC<PlayerProps> = ({
           {/* Album Art */}
           <div className={styles.artWrap}>
             <img
-              src={vibeData.art}
+              src={track.coverArt || vibeData.art}
               alt={`${track.title} album art`}
               className={styles.art}
             />

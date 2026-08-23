@@ -1,0 +1,100 @@
+﻿[
+    {
+        "id":  0,
+        "title":  "Khaab",
+        "artist":  "Akhil",
+        "streamUrl":  "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/59/21/8a/59218af8-1e2a-0578-9133-ac3e77017009/mzaf_14150872265016031746.plus.aac.p.m4a",
+        "art":  "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/28/c8/98/28c8987b-9a29-e638-6151-6b2c11c006ba/cover.jpg/100x100bb.jpg"
+    },
+    {
+        "id":  1,
+        "title":  "Excuses",
+        "artist":  "AP Dhillon, Gurinder Gill \u0026 Intense",
+        "streamUrl":  "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/1d/40/e3/1d40e37c-05cc-2dd5-070b-329417bbf9c3/mzaf_10303317287347489195.plus.aac.p.m4a",
+        "art":  "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/47/47/ac/4747ac85-1658-64ae-bc82-220a4d6213d5/859747478890_cover.jpg/100x100bb.jpg"
+    },
+    {
+        "id":  2,
+        "title":  "Brown Munde",
+        "artist":  "AP Dhillon, Gminxr, Gurinder Gill \u0026 Shinda Kahlon",
+        "streamUrl":  "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/97/74/69/977469be-a9d5-35a7-80ad-ebe12a799ccc/mzaf_804867738726203367.plus.aac.p.m4a",
+        "art":  "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/26/a3/ac/26a3ac64-69e4-95ec-80ab-1f5a477537d2/859742042973_cover.jpg/100x100bb.jpg"
+    },
+    {
+        "id":  3,
+        "title":  "With You",
+        "artist":  "AP Dhillon",
+        "streamUrl":  "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/b0/bb/ac/b0bbac05-65e6-37f2-3ca0-9a812b846022/mzaf_18364895536166474829.plus.aac.p.m4a",
+        "art":  "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/5a/ac/00/5aac005f-9403-70e4-bce0-cf452017476e/197189606472.jpg/100x100bb.jpg"
+    },
+    {
+        "id":  5,
+        "title":  "So High",
+        "artist":  "Sidhu Moose Wala",
+        "streamUrl":  "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/cf/6f/b6/cf6fb600-051d-66f2-4acb-df0259000b60/mzaf_13129631117141800671.plus.aac.p.m4a",
+        "art":  "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/1b/6e/74/1b6e74cd-b93a-5dd9-e7a2-c7623df73d10/cover.jpg/100x100bb.jpg"
+    },
+    {
+        "id":  6,
+        "title":  "Softly",
+        "artist":  "Karan Aujla \u0026 Ikky",
+        "streamUrl":  "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/5f/6f/01/5f6f0130-6567-22d4-bc1a-5ccb359c3fac/mzaf_5497113703334703756.plus.aac.p.m4a",
+        "art":  "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d3/08/bc/d308bc6a-20e1-6532-d933-35d1b429210e/5054197755538.jpg/100x100bb.jpg"
+    },
+    {
+        "id":  7,
+        "title":  "Lover",
+        "artist":  "Diljit Dosanjh",
+        "streamUrl":  "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/f9/9b/37/f99b37bf-44ef-9237-72ba-15a32437c832/mzaf_15116792754153694687.plus.aac.p.m4a",
+        "art":  "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/8a/89/e4/8a89e445-d2c6-f8ac-a828-27818b0c1afe/859749638209_cover.jpg/100x100bb.jpg"
+    },
+    {
+        "id":  8,
+        "title":  "295",
+        "artist":  "Sidhu Moose Wala",
+        "streamUrl":  "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/7f/f3/6d/7ff36d63-b933-3993-cd2f-f3fd770c3763/mzaf_12675758250838366519.plus.aac.p.m4a",
+        "art":  "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/97/69/58/976958ae-725e-bd41-6755-f0921c697840/810063889609_cover.jpg/100x100bb.jpg"
+    },
+    {
+        "id":  9,
+        "title":  "Jatt Da Muqabala",
+        "artist":  "Sidhu Moose Wala",
+        "streamUrl":  "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/69/75/f2/6975f271-0109-ce08-2578-863a40ff0fa9/mzaf_17434096247309872935.plus.aac.p.m4a",
+        "art":  "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/0c/a2/53/0ca25374-100d-1362-9a8c-d3f253423982/8903431696588_cover.jpg/100x100bb.jpg"
+    },
+    {
+        "id":  10,
+        "title":  "52 Bars",
+        "artist":  "Karan Aujla \u0026 Ikky",
+        "streamUrl":  "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/52/c9/1c/52c91c69-352d-cb4e-3706-265dc01067d0/mzaf_17387125942915601585.plus.aac.p.m4a",
+        "art":  "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/fc/bc/64/fcbc6417-8a88-7b5e-4490-8f53e537ffb0/859770181552_cover.jpg/100x100bb.jpg"
+    },
+    {
+        "id":  11,
+        "title":  "G.O.A.T.",
+        "artist":  "Diljit Dosanjh",
+        "streamUrl":  "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/2e/33/31/2e333148-70fe-ea73-759f-f3af0a73eda1/mzaf_14222836181033911236.plus.aac.p.m4a",
+        "art":  "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d2/89/ac/d289ac98-749e-3822-6b6e-b06aa4815715/859740651597_cover.jpg/100x100bb.jpg"
+    },
+    {
+        "id":  12,
+        "title":  "Dope Shope (feat. DJ DALAL LONDON) [LoFI Remix]",
+        "artist":  "Deep Money \u0026 Yo Yo Honey Singh",
+        "streamUrl":  "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/86/f1/0d/86f10dfa-8cf5-3b9b-0b39-3a44866b17c5/mzaf_11760684813129655380.plus.aac.p.m4a",
+        "art":  "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/af/73/ba/af73bac8-db8b-cd4f-8775-d7c797edd278/8902633349964.jpg/100x100bb.jpg"
+    },
+    {
+        "id":  13,
+        "title":  "Winning Speech",
+        "artist":  "Karan Aujla \u0026 MXRCI",
+        "streamUrl":  "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/e3/ae/b6/e3aeb64f-cadd-5830-c39f-6af51cd91670/mzaf_6001527501800958065.plus.aac.p.m4a",
+        "art":  "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/48/7c/36/487c3668-f7a4-4b1a-e09e-c74dae124dd9/5063483578089_cover.jpg/100x100bb.jpg"
+    },
+    {
+        "id":  14,
+        "title":  "Same Beef",
+        "artist":  "Bohemia \u0026 Sidhu Moose Wala",
+        "streamUrl":  "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/aa/1f/f2/aa1ff2c4-3056-18bd-bc1f-51d28bb42063/mzaf_145250469761525745.plus.aac.p.m4a",
+        "art":  "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/fe/c6/13/fec61345-4a34-8056-aff4-77d7ee71fabf/SameBeef_Inlay-_Itunes.jpg/100x100bb.jpg"
+    }
+]
