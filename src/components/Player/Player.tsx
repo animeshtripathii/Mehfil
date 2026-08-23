@@ -3,6 +3,12 @@ import type { Track, Vibe } from '../../types';
 import { formatTime } from '../../hooks/useAudioPlayer';
 import styles from './Player.module.css';
 
+const MenuIcon = () => (<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>);
+const PlayIcon = () => (<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>);
+const PauseIcon = () => (<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>);
+const PrevIcon = () => (<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5" stroke="currentColor" strokeWidth="2.5"></line></svg>);
+const NextIcon = () => (<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" strokeWidth="2.5"></line></svg>);
+
 interface PlayerProps {
   track: Track;
   vibeData: Vibe;
@@ -32,12 +38,11 @@ const Player: React.FC<PlayerProps> = ({
 }) => {
   const trackRef = useRef<HTMLDivElement>(null);
 
-  // Fallback image state
-  const [imgSrc, setImgSrc] = useState<string>(track.coverArt || vibeData.art);
-
+  // Fallback image state (only used when coverArt is set but fails to load)
+  const [imgError, setImgError] = useState(false);
   useEffect(() => {
-    setImgSrc(track.coverArt || vibeData.art);
-  }, [track.coverArt, vibeData.art]);
+    setImgError(false); // reset error flag when track changes
+  }, [track.id]);
 
   /* ── Progress click / drag ── */
   const handleProgressClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
@@ -58,14 +63,26 @@ const Player: React.FC<PlayerProps> = ({
         {/* ── Top row: Art + Info + Controls ── */}
         <div className={styles.topRow}>
 
-          {/* Album Art */}
+          {/* Album Art — img when available, gradient placeholder otherwise */}
           <div className={styles.artWrap}>
-            <img
-              src={imgSrc}
-              alt={`${track.title} album art`}
-              className={styles.art}
-              onError={() => setImgSrc(vibeData.art)}
-            />
+            {track.coverArt && !imgError ? (
+              <img
+                src={track.coverArt}
+                alt={`${track.title} album art`}
+                className={styles.art}
+                onError={() => setImgError(true)}
+              />
+            ) : (
+              <div
+                className={styles.artPlaceholder}
+                style={{ background: `linear-gradient(135deg, ${vibeData.accentColor}cc, ${vibeData.accentColor}44)` }}
+                aria-label={`${track.title} album art`}
+              >
+                <span className={styles.artInitial}>
+                  {track.title.charAt(0).toUpperCase()}
+                </span>
+              </div>
+            )}
             {/* Spinning active ring */}
             <div className={`${styles.artRing} ${isPlaying ? styles.visible : ''}`} />
           </div>
@@ -89,7 +106,7 @@ const Player: React.FC<PlayerProps> = ({
               title="Song Queue & Playlist"
               aria-label="Open song queue and playlist"
             >
-              ☰
+              <MenuIcon />
             </button>
 
             {/* Prev */}
@@ -99,7 +116,7 @@ const Player: React.FC<PlayerProps> = ({
               title="Previous Track"
               aria-label="Previous track"
             >
-              ⏮
+              <PrevIcon />
             </button>
 
             {/* Play / Pause */}
@@ -109,7 +126,7 @@ const Player: React.FC<PlayerProps> = ({
               title={isPlaying ? 'Pause' : 'Play'}
               aria-label={isPlaying ? 'Pause' : 'Play'}
             >
-              {isPlaying ? '⏸' : '▶'}
+              {isPlaying ? <PauseIcon /> : <PlayIcon />}
             </button>
 
             {/* Next */}
@@ -119,7 +136,7 @@ const Player: React.FC<PlayerProps> = ({
               title="Next Track"
               aria-label="Next track"
             >
-              ⏭
+              <NextIcon />
             </button>
           </div>
 
