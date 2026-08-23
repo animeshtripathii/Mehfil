@@ -4,7 +4,6 @@ import styles from './GabruOnline.module.css';
 
 interface GabruProfile {
   name: string;
-  role: string;
   githubUser: string;
   url: string;
   initials: string;
@@ -14,14 +13,12 @@ interface GabruProfile {
 const GABRUS: GabruProfile[] = [
   {
     name: 'Animesh Tripathi',
-    role: 'Creator & Lead Dev',
     githubUser: '@animeshtripathii',
     url: 'https://github.com/animeshtripathii',
     initials: 'AT',
   },
   {
     name: 'Harmeet Singh',
-    role: 'Punjabi Beats Curator',
     githubUser: '@HarmeettSinghh',
     url: 'https://github.com/HarmeettSinghh',
     initials: 'HS',
@@ -40,10 +37,13 @@ const GabruOnline: React.FC = () => {
         role="region"
         aria-label="Active Gabrus on Mehfil"
       >
-        {/* Spotlight light beam */}
+        {/* Spotlight light beam component */}
         <div className={styles.spotlightEffect}>
-          <Spotlight fill="#ffae00" className="-top-20 left-0" />
+          <Spotlight fill="#ffae00" className="-top-32 -left-10" />
         </div>
+
+        {/* Ambient glowing spotlight cone overlay */}
+        <div className={styles.spotlightCone} aria-hidden="true" />
 
         {/* Header */}
         <div className={styles.header}>
@@ -51,7 +51,7 @@ const GabruOnline: React.FC = () => {
             <span>ਮਹਿਫ਼ਲ ਦੇ ਗੱਭਰੂ</span> <span>🔥</span>
           </div>
           <p className={styles.headerSub}>
-            Click to visit developer GitHub profile
+            Click name to visit GitHub profile
           </p>
         </div>
 
@@ -77,7 +77,7 @@ const GabruOnline: React.FC = () => {
                 <div className={styles.meta}>
                   <span className={styles.name}>{gabru.name}</span>
                   <span className={styles.handle}>
-                    {gabru.githubUser} • {gabru.role}
+                    {gabru.githubUser}
                   </span>
                 </div>
               </div>
