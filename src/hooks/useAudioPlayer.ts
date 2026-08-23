@@ -28,7 +28,7 @@ export function useAudioPlayer() {
   const [currentVibe,    setCurrentVibe]    = useState<VibeId>(0);
   const [isPlaying,      setIsPlaying]      = useState(false);
   const [isShuffle,      setIsShuffle]      = useState(false);
-  const [isRepeat,       setIsRepeat]       = useState(true);
+  const [isRepeat,       setIsRepeat]       = useState(false);
   const [isLiked,        setIsLiked]        = useState(false);
   const [isMuted,        setIsMuted]        = useState(false);
   const [volume,         setVolumeState]    = useState(75);
