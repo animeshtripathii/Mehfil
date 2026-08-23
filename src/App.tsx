@@ -2,10 +2,11 @@ import React, { useState, useCallback, useRef } from 'react';
 import type { VibeId } from './types';
 import { useAudioPlayer } from './hooks/useAudioPlayer';
 
-import TopNav  from './components/TopNav/TopNav';
-import Hero    from './components/Hero/Hero';
-import Player  from './components/Player/Player';
-import Toast   from './components/Toast/Toast';
+import TopNav    from './components/TopNav/TopNav';
+import Hero      from './components/Hero/Hero';
+import Player    from './components/Player/Player';
+import Toast     from './components/Toast/Toast';
+import VibeModal from './components/VibeModal/VibeModal';
 
 import './styles/globals.css';
 import styles from './App.module.css';
@@ -24,6 +25,9 @@ const App: React.FC = () => {
 
   // ── Active nav page ──
   const [navPage, setNavPage] = useState<NavPage>('home');
+
+  // ── First load modal state (starts open on first visit) ──
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
   // ── Toast ──
   const [toastMsg,     setToastMsg]     = useState('');
@@ -46,6 +50,12 @@ const App: React.FC = () => {
       showToast(`${labels[page as number]} selected`);
     }
   }, [player, showToast]);
+
+  // ── Modal Vibe Selection handler ──
+  const handleModalSelectVibe = useCallback((id: VibeId) => {
+    handleNavChange(id);
+    setIsModalOpen(false);
+  }, [handleNavChange]);
 
   const theme = THEME[String(navPage)] ?? THEME['home'];
 
@@ -75,7 +85,13 @@ const App: React.FC = () => {
         onPrev={player.prevTrack}
         onNext={player.nextTrack}
         onSeek={player.seek}
-        onMenuClick={() => showToast('📋 Queue coming soon!')}
+        onMenuClick={() => setIsModalOpen(true)}
+      />
+
+      <VibeModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSelectVibe={handleModalSelectVibe}
       />
 
       <Toast message={toastMsg} visible={toastVisible} />
