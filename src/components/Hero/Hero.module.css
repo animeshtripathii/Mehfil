@@ -13,12 +13,19 @@
   text-align: center;
   overflow: hidden;
 
-  /* Background driven by --hero-bg, fades on change */
+  /* Background driven by --hero-bg on desktop, fades on change */
   background-image: var(--hero-bg, url('/assets/home_page.jpeg'));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   transition: background-image 0.6s ease;
+}
+
+@media (max-width: 640px), (orientation: portrait) and (max-width: 900px) {
+  .hero {
+    background-image: var(--hero-bg-mobile, var(--hero-bg));
+    background-position: center center;
+  }
 }
 
 /* Dark gradient overlay — tinted by active vibe colour */
@@ -168,5 +175,41 @@
     opacity: 1;
     transform: translateY(0);
     filter: blur(0);
+  }
+}
+
+/* ══════════════════════════════════════
+   Mobile Phone Responsiveness (< 640px)
+══════════════════════════════════════ */
+@media (max-width: 640px) {
+  .content {
+    padding: calc(var(--nav-h) + 6px) 16px calc(var(--player-h) + 12px);
+    gap: 8px;
+  }
+
+  .pillNav {
+    margin-bottom: 14px;
+    padding: 3px 6px;
+    gap: 4px;
+  }
+
+  .navPill {
+    padding: 5px 12px;
+    font-size: 0.72rem;
+  }
+
+  .title {
+    font-size: clamp(1.75rem, 8.5vw, 2.8rem);
+    line-height: 1.25;
+  }
+
+  .quote {
+    font-size: 0.85rem;
+    line-height: 1.35;
+  }
+
+  .subtitle {
+    font-size: 0.55rem;
+    letter-spacing: 1.5px;
   }
 }

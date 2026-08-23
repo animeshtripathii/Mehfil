@@ -10,6 +10,7 @@ interface HeroProps {
 /* ── Per-page configuration ── */
 interface PageConfig {
   bg:       string;
+  bgMobile: string;
   title:    string;
   quote:    string;
   subtitle: string;
@@ -21,6 +22,7 @@ interface PageConfig {
 const PAGE_CONFIG: Record<number, PageConfig> = {
   0: {  // Mehfil — warm golden dhaba vibes
     bg:       '/assets/home_page.jpeg',
+    bgMobile: '/assets/home_page_mobile.jpeg',
     title:    'ਮਹਿਫ਼ਲ ਮਿੱਤਰਾਂ ਦੀ',
     quote:    'ਜਿੱਥੇ ਯਾਰ ਬੈਠ ਜਾਣ, ਉਹੀਓ ਮਹਿਫ਼ਲ ਬਣ ਜਾਂਦੀ ਐ',
     subtitle: 'YAAR DIYAN GALLAAN \u00a0•\u00a0 CHAH DI CHUSKI \u00a0•\u00a0 DESI NAGME \u00a0•\u00a0 DIL WALI VIBE',
@@ -30,6 +32,7 @@ const PAGE_CONFIG: Record<number, PageConfig> = {
   },
   1: {  // Khaab — romantic pink / purple
     bg:       '/assets/Khaab.jpeg',
+    bgMobile: '/assets/Khaab_mobile.jpeg',
     title:    'ਤਾਰਿਆਂ ਦੇ ਦੇਸ਼',
     quote:    'ਤੇਰੇ ਖ਼ਾਬਾਂ ਦਾ ਸਫ਼ਰ, ਤਾਰਿਆਂ ਦੀ ਲੋਅ \'ਚ',
     subtitle: 'DILAN DE KHAAB \u00a0•\u00a0 SOULFUL RAATAAN \u00a0•\u00a0 ISHQ WALI VIBE \u00a0•\u00a0 LOFI REVERB',
@@ -39,6 +42,7 @@ const PAGE_CONFIG: Record<number, PageConfig> = {
   },
   2: {  // Gedi Route — highway orange / amber
     bg:       '/assets/GediRoute.png',
+    bgMobile: '/assets/GediRoute_mobile.jpeg',
     title:    'ਰਾਤ ਦੀ ਗੇੜੀ',
     quote:    'ਸੁੰਨਸਾਨ ਸੜਕਾਂ, ਬੁਲੇਟ ਦੀ ਆਵਾਜ਼ ਤੇ ਭਾਰੀ ਬੇਸ',
     subtitle: 'BULLET THUMPS \u00a0•\u00a0 HIGHWAY BASS \u00a0•\u00a0 RAAT DI SPEED \u00a0•\u00a0 GABRU VIBE',
@@ -64,10 +68,11 @@ const Hero: React.FC<HeroProps> = ({ navPage, onNavChange }) => {
       id="hero"
       role="banner"
       style={{
-        '--hero-bg':      `url('${config.bg}')`,
-        '--hero-accent':  config.accent,
-        '--hero-glow':    config.glow,
-        '--hero-overlay': config.overlay,
+        '--hero-bg':        `url('${config.bg}')`,
+        '--hero-bg-mobile': `url('${config.bgMobile}')`,
+        '--hero-accent':    config.accent,
+        '--hero-glow':      config.glow,
+        '--hero-overlay':   config.overlay,
       } as React.CSSProperties}
     >
       <div className={styles.overlay} aria-hidden="true" />

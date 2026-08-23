@@ -1,6 +1,7 @@
 /* ═══════════════════════════════════════════════════
-   GabruOnline.module.css — 2 Gabru Online Bottom-Left Widget
-   With Prominent Aceternity Spotlight glow & GitHub redirection
+   GabruOnline.module.css — 2 Gabru Online Widget
+   Desktop: Bottom-Left with Aceternity Spotlight glow
+   Mobile: Top-Right with Downward Dropping Card
 ═══════════════════════════════════════════════════ */
 
 .container {
@@ -15,13 +16,13 @@
   pointer-events: auto;
 }
 
-/* ── Live Indicator Badge ── */
+/* ── Live Indicator Badge Button ── */
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  background: rgba(14, 10, 20, 0.86);
+  background: rgba(14, 10, 20, 0.88);
   backdrop-filter: blur(20px) saturate(1.5);
   -webkit-backdrop-filter: blur(20px) saturate(1.5);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -32,12 +33,12 @@
   letter-spacing: 0.3px;
   cursor: pointer;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(34, 197, 94, 0.18);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   user-select: none;
+  border-style: solid;
 }
 
-.badge:hover,
-.container:hover .badge {
+.badge:hover {
   background: rgba(24, 18, 34, 0.96);
   border-color: rgba(255, 174, 0, 0.5);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.75), 0 0 20px rgba(255, 174, 0, 0.35);
@@ -85,11 +86,11 @@
   transition: transform 0.3s ease;
 }
 
-.container:hover .arrow {
+.arrowOpen {
   transform: rotate(180deg);
 }
 
-/* ── Spotlight Hover Card ── */
+/* ── Spotlight Popover Card ── */
 .popover {
   position: absolute;
   bottom: calc(100% + 12px);
@@ -109,11 +110,10 @@
   opacity: 0;
   visibility: hidden;
   transform: translateY(12px) scale(0.96);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
 }
 
-.container:hover .popover,
 .popover.visible {
   opacity: 1;
   visibility: visible;
@@ -162,6 +162,15 @@
   position: relative;
   z-index: 2;
   margin-bottom: 14px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.headerTitleGroup {
+  display: flex;
+  flex-direction: column;
 }
 
 .headerTitle {
@@ -180,6 +189,28 @@
   font-size: 0.72rem;
   color: rgba(240, 232, 213, 0.55);
   margin-top: 2px;
+}
+
+.closeBtn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #f0e8d5;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.closeBtn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffae00;
+  transform: scale(1.08);
 }
 
 /* ── Profiles List ── */
@@ -262,25 +293,23 @@
 
 .name {
   font-family: var(--font-head);
-  font-size: 0.98rem;
+  font-size: 0.92rem;
   font-weight: 700;
   color: #ffffff;
   letter-spacing: 0.2px;
 }
 
 .handle {
-  font-size: 0.74rem;
-  color: rgba(255, 174, 0, 0.9);
-  font-family: var(--font-main);
-  font-weight: 500;
+  font-size: 0.72rem;
+  color: rgba(240, 232, 213, 0.55);
 }
 
 .githubIcon {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   fill: currentColor;
-  color: rgba(240, 232, 213, 0.5);
-  transition: color 0.2s ease, transform 0.2s ease;
+  color: rgba(240, 232, 213, 0.45);
+  transition: all 0.25s ease;
   position: relative;
   z-index: 2;
 }
@@ -300,12 +329,71 @@
   letter-spacing: 0.5px;
 }
 
-@media (max-width: 768px) {
+/* ══════════════════════════════════════
+   Mobile Phone Responsiveness (< 640px)
+   Position in Top-Right with Downward Popover
+══════════════════════════════════════ */
+@media (max-width: 640px) {
   .container {
-    bottom: 80px;
-    left: 16px;
+    top: 14px;
+    right: 14px;
+    bottom: auto;
+    left: auto;
+    align-items: flex-end;
+    z-index: 1005;
   }
+
+  .badge {
+    padding: 5px 11px;
+    font-size: 0.72rem;
+    gap: 6px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7), 0 0 10px rgba(34, 197, 94, 0.2);
+  }
+
   .popover {
-    width: 290px;
+    top: calc(100% + 8px);
+    bottom: auto;
+    right: 0;
+    left: auto;
+    width: calc(100vw - 28px);
+    max-width: 285px;
+    padding: 13px 14px;
+    transform: translateY(-8px) scale(0.96);
+    transform-origin: top right;
+  }
+
+  .popover.visible {
+    transform: translateY(0) scale(1);
+  }
+
+  .profileList {
+    gap: 8px;
+  }
+
+  .profileCard {
+    padding: 8px 10px;
+    border-radius: 12px;
+  }
+
+  .avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 0.85rem;
+  }
+
+  .name {
+    font-size: 0.85rem;
+  }
+
+  .handle {
+    font-size: 0.68rem;
+  }
+
+  .headerTitle {
+    font-size: 1.05rem;
+  }
+
+  .headerSub {
+    font-size: 0.68rem;
   }
 }

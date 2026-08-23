@@ -263,8 +263,39 @@
   to { transform: rotate(360deg); }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
+  .playerBar {
+    padding: 6px 10px 10px;
+  }
   .pill {
     max-width: 100%;
+    border-radius: 16px;
+  }
+  .topRow {
+    padding: 7px 10px 5px;
+  }
+  .artWrap {
+    width: 38px;
+    height: 38px;
+    margin-right: 8px;
+  }
+  .title {
+    font-size: 0.82rem;
+  }
+  .artist {
+    font-size: 0.68rem;
+  }
+  .playBtn {
+    width: 36px;
+    height: 36px;
+    font-size: 0.95rem;
+  }
+  .ctrlBtn {
+    width: 28px;
+    height: 28px;
+    font-size: 0.85rem;
+  }
+  .progressRow {
+    padding: 0 10px 7px;
   }
 }

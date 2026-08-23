@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Spotlight } from '../ui/spotlight';
 import styles from './GabruOnline.module.css';
 
@@ -15,27 +15,60 @@ const GABRUS: GabruProfile[] = [
     name: 'Harmeet Singh',
     githubUser: '@HarmeettSinghh',
     url: 'https://github.com/HarmeettSinghh',
-    initials: 'HS',
+    initials: 'H',
     isHarmeet: true,
   },
   {
     name: 'Animesh Tripathi',
     githubUser: '@animeshtripathii',
     url: 'https://github.com/animeshtripathii',
-    initials: 'AT',
+    initials: 'A',
   },
-
 ];
 
 const GabruOnline: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef<HTMLElement>(null);
+
+  // Close when clicking / touching outside
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleClickOutside = (e: MouseEvent | TouchEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [isOpen]);
+
+  // Close on Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen]);
 
   return (
-    <aside className={styles.container} aria-label="Gabrus Online Status">
-      {/* ── Hover / Click Spotlight Popover ── */}
+    <aside
+      ref={containerRef}
+      className={styles.container}
+      aria-label="Gabrus Online Status"
+    >
+      {/* ── Spotlight Popover Card ── */}
       <div
         className={`${styles.popover} ${isOpen ? styles.visible : ''}`}
-        role="region"
+        role="dialog"
+        aria-modal={isOpen}
         aria-label="Active Gabrus on Mehfil"
       >
         {/* Spotlight light beam component */}
@@ -48,12 +81,21 @@ const GabruOnline: React.FC = () => {
 
         {/* Header */}
         <div className={styles.header}>
-          <div className={styles.headerTitle}>
-            <span>ਮਹਿਫ਼ਲ ਦੇ ਗੱਭਰੂ</span> <span>🔥</span>
+          <div className={styles.headerTitleGroup}>
+            <div className={styles.headerTitle}>
+              <span>ਮਹਿਫ਼ਲ ਦੇ ਗੱਭਰੂ</span> <span>🔥</span>
+            </div>
+            <p className={styles.headerSub}>
+              Click name to visit GitHub profile
+            </p>
           </div>
-          <p className={styles.headerSub}>
-            Click name to visit GitHub profile
-          </p>
+          <button
+            className={styles.closeBtn}
+            onClick={() => setIsOpen(false)}
+            aria-label="Close Gabrus card"
+          >
+            ✕
+          </button>
         </div>
 
         {/* Profile Cards */}
@@ -101,20 +143,21 @@ const GabruOnline: React.FC = () => {
       </div>
 
       {/* ── Trigger Badge ── */}
-      <div
+      <button
         className={styles.badge}
-        onClick={() => setIsOpen(!isOpen)}
-        role="button"
-        tabIndex={0}
+        onClick={() => setIsOpen((prev) => !prev)}
         aria-expanded={isOpen}
+        aria-label="Toggle active Gabrus list"
       >
         <span className={styles.dotWrap}>
           <span className={styles.ping} />
           <span className={styles.dot} />
         </span>
         <span>2 Gabru Online</span>
-        <span className={styles.arrow}>▲</span>
-      </div>
+        <span className={`${styles.arrow} ${isOpen ? styles.arrowOpen : ''}`}>
+          ▲
+        </span>
+      </button>
     </aside>
   );
 };
