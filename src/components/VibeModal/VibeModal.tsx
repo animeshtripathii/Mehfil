@@ -9,6 +9,12 @@ interface VibeModalProps {
   onSelectVibe: (id: VibeId) => void;
 }
 
+const BUTTON_STYLES: Record<number, { grad: string; text: string }> = {
+  0: { grad: 'linear-gradient(135deg, #ffae00 0%, #ff6b00 100%)', text: 'ਬਜਾਓ ▶' },
+  1: { grad: 'linear-gradient(135deg, #ff3fa4 0%, #ff6b00 100%)', text: 'ਚਲਾਓ ▶' },
+  2: { grad: 'linear-gradient(135deg, #ff6b00 0%, #ffae00 100%)', text: 'ENTER ▶' },
+};
+
 const VibeModal: React.FC<VibeModalProps> = ({ isOpen, onClose, onSelectVibe }) => {
   // Close on Escape key
   useEffect(() => {
@@ -70,14 +76,10 @@ const VibeModal: React.FC<VibeModalProps> = ({ isOpen, onClose, onSelectVibe }) 
           Choose your music experience to get the beats rolling
         </p>
 
-        {/* Cards */}
+        {/* 3 Cards Grid */}
         <div className={styles.grid}>
           {VIBES.map((vibe) => {
-            const isKhaab = vibe.id === 0;
-            const btnGradient = isKhaab
-              ? 'linear-gradient(135deg, #ff3fa4 0%, #ff6b00 100%)'
-              : 'linear-gradient(135deg, #ff6b00 0%, #ffae00 100%)';
-            const btnText = isKhaab ? 'ਚਲਾਓ ▶' : 'ਬਜਾਓ ▶';
+            const btnInfo = BUTTON_STYLES[vibe.id] ?? BUTTON_STYLES[0];
 
             return (
               <div
@@ -87,7 +89,7 @@ const VibeModal: React.FC<VibeModalProps> = ({ isOpen, onClose, onSelectVibe }) 
                   {
                     '--card-accent': vibe.accentColor,
                     '--card-glow': vibe.glowColor,
-                    '--card-btn-grad': btnGradient,
+                    '--card-btn-grad': btnInfo.grad,
                   } as React.CSSProperties
                 }
                 onClick={() => {
@@ -128,7 +130,7 @@ const VibeModal: React.FC<VibeModalProps> = ({ isOpen, onClose, onSelectVibe }) 
                       onClose();
                     }}
                   >
-                    {btnText}
+                    {btnInfo.text}
                   </button>
                 </div>
               </div>

@@ -1,12 +1,5 @@
 import type { Vibe, Track, VibeId } from '../types';
 
-// ─── Audio Source Resolution ───────────────────────────────────────────────────
-// Priority order for each track:
-//   1. localSrc  — filename in public/songs/ (e.g. "295_bass_remix.mp3")
-//   2. streamUrl — direct 320kbps full song stream URL (.mp4 AAC container)
-//   3. cloudinaryId — Cloudinary public_id (optional fallback)
-//   4. Empty string → simulation fallback
-
 export const CLOUDINARY_CLOUD_NAME = 'YOUR_CLOUD_NAME';
 
 export function getAudioUrl(track: Track): string {
@@ -18,42 +11,143 @@ export function getAudioUrl(track: Track): string {
   return '';
 }
 
-// ─── Vibes ─────────────────────────────────────────────────────────────────────
+// ─── 3 Curated Vibes ───────────────────────────────────────────────────────────
 export const VIBES: Vibe[] = [
   {
     id: 0,
+    name: 'Mehfil',
+    nameGurmukhi: 'ਮਹਿਫ਼ਲ ☕',
+    emoji: '☕',
+    art: '/assets/home_page.jpeg',
+    badge: '☕ Mehfil',
+    quote: 'ਜਿੱਥੇ ਯਾਰ ਬੈਠ ਜਾਣ, ਉਹੀਓ ਮਹਿਫ਼ਲ ਬਣ ਜਾਂਦੀ ਐ',
+    accentColor: '#ffae00',
+    glowColor: 'rgba(255,174,0,0.55)',
+    description: 'ਯਾਰਾਂ ਦੀਆਂ ਗੱਲਾਂ, ਚਾਹ ਦੀ ਚੁਸਕੀ ਤੇ ਸਦਾਬਹਾਰ ਦੇਸੀ ਨਗਮੇ। Pind Da Dhaba feels.',
+    tags: ['Yaarian', 'Chah & Dhabe', 'Desi Folk'],
+    trackCount: 6,
+  },
+  {
+    id: 1,
     name: 'Khaab❤️',
     nameGurmukhi: 'ਖ਼ਾਬ ❤️',
     emoji: '❤️',
     art: '/assets/Khaab.jpeg',
     badge: '❤️ Khaab',
+    quote: 'ਤੇਰੇ ਖ਼ਾਬਾਂ ਦਾ ਸਫ਼ਰ, ਤਾਰਿਆਂ ਦੀ ਲੋਅ \'ਚ',
     accentColor: '#ff3fa4',
     glowColor: 'rgba(255,63,164,0.55)',
     description: 'Deep romantic tracks, soulful vocals, starry night feels. Dil de kareeb.',
     tags: ['Romantic', 'Dreamy', 'Lofi'],
-    trackCount: 8,
+    trackCount: 7,
   },
   {
-    id: 1,
+    id: 2,
     name: 'GediRoute',
     nameGurmukhi: 'ਗੇੜੀ ਰੂਟ 🏍️',
     emoji: '🏍️',
     art: '/assets/GediRoute.png',
     badge: '🏍️ Gedi Route',
+    quote: 'ਸੁੰਨਸਾਨ ਸੜਕਾਂ, ਬੁਲੇਟ ਦੀ ਆਵਾਜ਼ ਤੇ ਭਾਰੀ ਬੇਸ',
     accentColor: '#ff6b00',
     glowColor: 'rgba(255,107,0,0.55)',
     description: 'Open highways, heavy bass, bullet bike thumps & late-night high speed cruise.',
     tags: ['Highway', 'Bass', 'Night Drive'],
-    trackCount: 7,
+    trackCount: 8,
   },
 ];
 
-// ─── Full Length Tracks (Full 320kbps Audio Streams) ───────────────────────────
+// ─── All Full Length 320kbps Audio Tracks ──────────────────────────────────────
 export const TRACKS: Track[] = [
-  // ── Vibe 0: Khaab ❤️ (Romantic / Dreamy / Soulful) ──
+
+  // ═════════════════════════════════════════════════════════════════════════════
+  // ── Vibe 0: Mehfil ☕ (Yaariyan / Pind De Nagme / Desi Folk)
+  // ═════════════════════════════════════════════════════════════════════════════
   {
     id: 0,
     vibe: 0 as VibeId,
+    title: 'Patiala Peg',
+    gurm: 'ਪਟਿਆਲਾ ਪੈੱਗ',
+    artist: 'Diljit Dosanjh',
+    dur: '3:08',
+    durationSec: 188,
+    streamUrl: 'https://aac.saavncdn.com/901/6f9a40435b170c06fb9c409dd8fb117e_320.mp4',
+    coverArt: 'https://c.saavncdn.com/901/Patiala-Peg-Punjabi-2014-500x500.jpg',
+    localSrc: '',
+    cloudinaryId: '',
+  },
+  {
+    id: 1,
+    vibe: 0 as VibeId,
+    title: 'Mathi Mathi (Yaarian)',
+    gurm: 'ਮੱਠੀ ਮੱਠੀ (ਯਾਰੀਆਂ)',
+    artist: 'Amrinder Gill',
+    dur: '3:10',
+    durationSec: 190,
+    streamUrl: 'https://aac.saavncdn.com/612/23bcc68943d822393a70a4f5e5f21e6c_320.mp4',
+    coverArt: 'https://c.saavncdn.com/612/Laiye-Je-Yaarian-Soundtrack--Punjabi-2019-20190708170249-500x500.jpg',
+    localSrc: '',
+    cloudinaryId: '',
+  },
+  {
+    id: 2,
+    vibe: 0 as VibeId,
+    title: 'Putt Jattan De',
+    gurm: 'ਪੁੱਤ ਜੱਟਾਂ ਦੇ',
+    artist: 'Surjit Bindrakhia',
+    dur: '3:24',
+    durationSec: 204,
+    streamUrl: 'https://aac.saavncdn.com/821/df6ef90fe280bd5dee031213a5becf0e_320.mp4',
+    coverArt: 'https://c.saavncdn.com/821/Putt-Jattan-De-Punjabi-2013-500x500.jpg',
+    localSrc: '',
+    cloudinaryId: '',
+  },
+  {
+    id: 3,
+    vibe: 0 as VibeId,
+    title: 'Teri Meri Jodi (Channo)',
+    gurm: 'ਚੰਨੋ',
+    artist: 'Harbhajan Mann',
+    dur: '3:26',
+    durationSec: 206,
+    streamUrl: 'https://aac.saavncdn.com/995/81ca231376ddd808afd6cbe65f13dcf4_320.mp4',
+    coverArt: 'https://c.saavncdn.com/995/Teri-Meri-Jodi-Punjabi-2022-20221128181655-500x500.jpg',
+    localSrc: '',
+    cloudinaryId: '',
+  },
+  {
+    id: 4,
+    vibe: 0 as VibeId,
+    title: 'Sanu Ik Pal',
+    gurm: 'ਸਾਨੂੰ ਇੱਕ ਪਲ',
+    artist: 'Nusrat Fateh Ali Khan',
+    dur: '3:02',
+    durationSec: 182,
+    streamUrl: 'https://aac.saavncdn.com/186/0da2cc816e11da44531c8bf59cc296b2_320.mp4',
+    coverArt: 'https://c.saavncdn.com/186/Nusrat-Fateh-Ali-Khan-Urdu-2020-20200701140003-500x500.jpg',
+    localSrc: '',
+    cloudinaryId: '',
+  },
+  {
+    id: 5,
+    vibe: 0 as VibeId,
+    title: 'Mitran Nu Shaunk',
+    gurm: 'ਮਿੱਤਰਾਂ ਨੂੰ ਸ਼ੌਂਕ',
+    artist: 'Babbu Maan',
+    dur: '3:38',
+    durationSec: 218,
+    streamUrl: 'https://aac.saavncdn.com/988/1133e125723074fcf9effb322c6d45e3_320.mp4',
+    coverArt: 'https://c.saavncdn.com/988/Babbu-Maan-Punjabi-2019-20190823055452-500x500.jpg',
+    localSrc: '',
+    cloudinaryId: '',
+  },
+
+  // ═════════════════════════════════════════════════════════════════════════════
+  // ── Vibe 1: Khaab ❤️ (Romantic / Dreamy / Soulful Lofi)
+  // ═════════════════════════════════════════════════════════════════════════════
+  {
+    id: 6,
+    vibe: 1 as VibeId,
     title: 'Khaab',
     gurm: 'ਖ਼ਾਬ',
     artist: 'Akhil',
@@ -65,8 +159,8 @@ export const TRACKS: Track[] = [
     cloudinaryId: '',
   },
   {
-    id: 1,
-    vibe: 0 as VibeId,
+    id: 7,
+    vibe: 1 as VibeId,
     title: 'Excuses',
     gurm: 'ਬਹਾਨੇ',
     artist: 'AP Dhillon, Gurinder Gill & Intense',
@@ -78,8 +172,8 @@ export const TRACKS: Track[] = [
     cloudinaryId: '',
   },
   {
-    id: 2,
-    vibe: 0 as VibeId,
+    id: 8,
+    vibe: 1 as VibeId,
     title: 'Brown Munde',
     gurm: 'ਬ੍ਰਾਊਨ ਮੁੰਡੇ',
     artist: 'AP Dhillon, Gurinder Gill & Shinda Kahlon',
@@ -91,8 +185,8 @@ export const TRACKS: Track[] = [
     cloudinaryId: '',
   },
   {
-    id: 3,
-    vibe: 0 as VibeId,
+    id: 9,
+    vibe: 1 as VibeId,
     title: 'With You',
     gurm: 'ਤੇਰੇ ਨਾਲ',
     artist: 'AP Dhillon',
@@ -104,8 +198,8 @@ export const TRACKS: Track[] = [
     cloudinaryId: '',
   },
   {
-    id: 4,
-    vibe: 0 as VibeId,
+    id: 10,
+    vibe: 1 as VibeId,
     title: 'Dil Nu',
     gurm: 'ਦਿਲ ਨੂੰ',
     artist: 'AP Dhillon & Shinda Kahlon',
@@ -117,21 +211,8 @@ export const TRACKS: Track[] = [
     cloudinaryId: '',
   },
   {
-    id: 5,
-    vibe: 0 as VibeId,
-    title: 'So High',
-    gurm: 'ਸੋ ਹਾਈ',
-    artist: 'Sidhu Moose Wala',
-    dur: '3:53',
-    durationSec: 233,
-    streamUrl: 'https://aac.saavncdn.com/544/fa128b5b00df068d78bc50bf19bf137f_320.mp4',
-    coverArt: 'https://c.saavncdn.com/544/So-High-Punjabi-2017-500x500.jpg',
-    localSrc: '',
-    cloudinaryId: '',
-  },
-  {
-    id: 6,
-    vibe: 0 as VibeId,
+    id: 11,
+    vibe: 1 as VibeId,
     title: 'Softly',
     gurm: 'ਸੌਫਟਲੀ',
     artist: 'Karan Aujla & Ikky',
@@ -143,8 +224,8 @@ export const TRACKS: Track[] = [
     cloudinaryId: '',
   },
   {
-    id: 7,
-    vibe: 0 as VibeId,
+    id: 12,
+    vibe: 1 as VibeId,
     title: 'Lover',
     gurm: 'ਲਵਰ',
     artist: 'Diljit Dosanjh',
@@ -156,10 +237,12 @@ export const TRACKS: Track[] = [
     cloudinaryId: '',
   },
 
-  // ── Vibe 1: GediRoute 🏍️ (Highway / Bass / Night Drive) ──
+  // ═════════════════════════════════════════════════════════════════════════════
+  // ── Vibe 2: GediRoute 🏍️ (Highway Bass / Night Drive / Heavy Thumps)
+  // ═════════════════════════════════════════════════════════════════════════════
   {
-    id: 8,
-    vibe: 1 as VibeId,
+    id: 13,
+    vibe: 2 as VibeId,
     title: '295',
     gurm: 'ਦੋ ਸੌ ਪੰਜਾਨਵੇਂ',
     artist: 'Sidhu Moose Wala',
@@ -171,8 +254,21 @@ export const TRACKS: Track[] = [
     cloudinaryId: '',
   },
   {
-    id: 9,
-    vibe: 1 as VibeId,
+    id: 14,
+    vibe: 2 as VibeId,
+    title: 'So High',
+    gurm: 'ਸੋ ਹਾਈ',
+    artist: 'Sidhu Moose Wala',
+    dur: '3:53',
+    durationSec: 233,
+    streamUrl: 'https://aac.saavncdn.com/544/fa128b5b00df068d78bc50bf19bf137f_320.mp4',
+    coverArt: 'https://c.saavncdn.com/544/So-High-Punjabi-2017-500x500.jpg',
+    localSrc: '',
+    cloudinaryId: '',
+  },
+  {
+    id: 15,
+    vibe: 2 as VibeId,
     title: 'Jatt Da Muqabala',
     gurm: 'ਜੱਟ ਦਾ ਮੁਕਾਬਲਾ',
     artist: 'Sidhu Moose Wala',
@@ -184,8 +280,8 @@ export const TRACKS: Track[] = [
     cloudinaryId: '',
   },
   {
-    id: 10,
-    vibe: 1 as VibeId,
+    id: 16,
+    vibe: 2 as VibeId,
     title: '52 Bars',
     gurm: 'ਬਵੰਜਾ ਬਾਰਜ਼',
     artist: 'Karan Aujla & Ikky',
@@ -197,8 +293,8 @@ export const TRACKS: Track[] = [
     cloudinaryId: '',
   },
   {
-    id: 11,
-    vibe: 1 as VibeId,
+    id: 17,
+    vibe: 2 as VibeId,
     title: 'G.O.A.T.',
     gurm: 'ਗੋਟ',
     artist: 'Diljit Dosanjh',
@@ -210,8 +306,8 @@ export const TRACKS: Track[] = [
     cloudinaryId: '',
   },
   {
-    id: 12,
-    vibe: 1 as VibeId,
+    id: 18,
+    vibe: 2 as VibeId,
     title: 'Dope Shope',
     gurm: 'ਡੋਪ ਸ਼ੋਪ',
     artist: 'Deep Money & Yo Yo Honey Singh',
@@ -223,8 +319,8 @@ export const TRACKS: Track[] = [
     cloudinaryId: '',
   },
   {
-    id: 13,
-    vibe: 1 as VibeId,
+    id: 19,
+    vibe: 2 as VibeId,
     title: 'Winning Speech',
     gurm: 'ਵਿਨਿੰਗ ਸਪੀਚ',
     artist: 'Karan Aujla & MXRCI',
@@ -236,8 +332,8 @@ export const TRACKS: Track[] = [
     cloudinaryId: '',
   },
   {
-    id: 14,
-    vibe: 1 as VibeId,
+    id: 20,
+    vibe: 2 as VibeId,
     title: 'Same Beef',
     gurm: 'ਸੇਮ ਬੀਫ',
     artist: 'Bohemia & Sidhu Moose Wala',

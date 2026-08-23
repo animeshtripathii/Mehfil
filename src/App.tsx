@@ -11,20 +11,24 @@ import VibeModal from './components/VibeModal/VibeModal';
 import './styles/globals.css';
 import styles from './App.module.css';
 
-type NavPage = 'home' | VibeId;
-
 /* Matches the PAGE_CONFIG in Hero.tsx */
-const THEME: Record<string, { accent: string; glow: string }> = {
-  home: { accent: '#ffae00', glow: 'rgba(255,174,0,0.45)' },
-  '0':  { accent: '#ff3fa4', glow: 'rgba(255,63,164,0.50)' },
-  '1':  { accent: '#ff6b00', glow: 'rgba(255,107,0,0.55)'  },
+const THEME: Record<number, { accent: string; glow: string }> = {
+  0: { accent: '#ffae00', glow: 'rgba(255,174,0,0.55)' },
+  1: { accent: '#ff3fa4', glow: 'rgba(255,63,164,0.50)' },
+  2: { accent: '#ff6b00', glow: 'rgba(255,107,0,0.55)' },
+};
+
+const VIBE_LABELS: Record<number, string> = {
+  0: '☕ Mehfil',
+  1: '❤️ Khaab',
+  2: '🏍️ Gedi Route',
 };
 
 const App: React.FC = () => {
   const player = useAudioPlayer();
 
-  // ── Active nav page ──
-  const [navPage, setNavPage] = useState<NavPage>('home');
+  // ── Active nav page / vibe (0: Mehfil, 1: Khaab, 2: Gedi Route) ──
+  const [navPage, setNavPage] = useState<VibeId>(0);
 
   // ── First load modal state (starts open on first visit) ──
   const [isModalOpen, setIsModalOpen] = useState(true);
@@ -41,14 +45,11 @@ const App: React.FC = () => {
     toastTimer.current = setTimeout(() => setToastVisible(false), 2800);
   }, []);
 
-  // ── Nav handler ──
-  const handleNavChange = useCallback((page: NavPage) => {
+  // ── Nav / Vibe handler ──
+  const handleNavChange = useCallback((page: VibeId) => {
     setNavPage(page);
-    if (page !== 'home') {
-      player.selectVibe(page as VibeId);
-      const labels: Record<number, string> = { 0: '❤️ Khaab', 1: '🏍️ Gedi Route' };
-      showToast(`${labels[page as number]} selected`);
-    }
+    player.selectVibe(page);
+    showToast(`${VIBE_LABELS[page]} selected`);
   }, [player, showToast]);
 
   // ── Modal Vibe Selection handler ──
@@ -57,7 +58,7 @@ const App: React.FC = () => {
     setIsModalOpen(false);
   }, [handleNavChange]);
 
-  const theme = THEME[String(navPage)] ?? THEME['home'];
+  const theme = THEME[navPage] ?? THEME[0];
 
   return (
     <div

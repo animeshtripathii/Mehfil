@@ -127,16 +127,31 @@
 }
 
 /* ══════════════════════════════════════
-   Subtitle
+   Poetic Quote / Shayari Line
+══════════════════════════════════════ */
+.quote {
+  font-family: var(--font-main);
+  font-size: clamp(0.92rem, 1.8vw, 1.3rem);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--hero-accent, #ffae00);
+  text-shadow: 0 0 24px var(--hero-glow, rgba(255,174,0,0.45));
+  margin: 4px 0 2px;
+  animation: titleIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
+  letter-spacing: 0.3px;
+}
+
+/* ══════════════════════════════════════
+   Subtitle Tagline
 ══════════════════════════════════════ */
 .subtitle {
   font-family: var(--font-main);
-  font-size: 0.63rem;
-  font-weight: 500;
-  letter-spacing: 3px;
-  color: rgba(240, 232, 213, 0.38);
+  font-size: clamp(0.6rem, 1vw, 0.72rem);
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  color: rgba(240, 232, 213, 0.55);
   text-transform: uppercase;
-  animation: titleIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+  animation: titleIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
 }
 
 /* Entrance animation for title/subtitle on page switch */
