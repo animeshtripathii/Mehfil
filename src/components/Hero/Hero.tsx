@@ -42,7 +42,7 @@ const PAGE_CONFIG: Record<number, PageConfig> = {
   },
   2: {  // Gedi Route — highway orange / amber
     bg:       '/assets/GediRoute.png',
-    bgMobile: '/assets/GediRoute_mobile.jpeg',
+    bgMobile: '/assets/GediRoute_mobile.png',
     title:    'ਰਾਤ ਦੀ ਗੇੜੀ',
     quote:    'ਸੁੰਨਸਾਨ ਸੜਕਾਂ, ਬੁਲੇਟ ਦੀ ਆਵਾਜ਼ ਤੇ ਭਾਰੀ ਬੇਸ',
     subtitle: 'BULLET THUMPS \u00a0•\u00a0 HIGHWAY BASS \u00a0•\u00a0 RAAT DI SPEED \u00a0•\u00a0 GABRU VIBE',
