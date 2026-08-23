@@ -2,11 +2,12 @@ import React, { useState, useCallback, useRef } from 'react';
 import type { VibeId } from './types';
 import { useAudioPlayer } from './hooks/useAudioPlayer';
 
-import TopNav    from './components/TopNav/TopNav';
-import Hero      from './components/Hero/Hero';
-import Player    from './components/Player/Player';
-import Toast     from './components/Toast/Toast';
-import VibeModal from './components/VibeModal/VibeModal';
+import TopNav      from './components/TopNav/TopNav';
+import Hero        from './components/Hero/Hero';
+import Player      from './components/Player/Player';
+import Toast       from './components/Toast/Toast';
+import VibeModal   from './components/VibeModal/VibeModal';
+import GabruOnline from './components/GabruOnline/GabruOnline';
 
 import './styles/globals.css';
 import styles from './App.module.css';
@@ -94,6 +95,8 @@ const App: React.FC = () => {
         onClose={() => setIsModalOpen(false)}
         onSelectVibe={handleModalSelectVibe}
       />
+
+      <GabruOnline />
 
       <Toast message={toastMsg} visible={toastVisible} />
     </div>

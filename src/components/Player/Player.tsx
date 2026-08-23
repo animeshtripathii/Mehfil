@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, useState, useEffect } from 'react';
 import type { Track, Vibe } from '../../types';
 import { formatTime } from '../../hooks/useAudioPlayer';
 import styles from './Player.module.css';
@@ -32,6 +32,13 @@ const Player: React.FC<PlayerProps> = ({
 }) => {
   const trackRef = useRef<HTMLDivElement>(null);
 
+  // Fallback image state
+  const [imgSrc, setImgSrc] = useState<string>(track.coverArt || vibeData.art);
+
+  useEffect(() => {
+    setImgSrc(track.coverArt || vibeData.art);
+  }, [track.coverArt, vibeData.art]);
+
   /* ── Progress click / drag ── */
   const handleProgressClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -54,90 +61,102 @@ const Player: React.FC<PlayerProps> = ({
           {/* Album Art */}
           <div className={styles.artWrap}>
             <img
-              src={track.coverArt || vibeData.art}
+              src={imgSrc}
               alt={`${track.title} album art`}
               className={styles.art}
+              onError={() => setImgSrc(vibeData.art)}
             />
-            <div className={`${styles.artRing} ${isPlaying ? styles.visible : ''}`} aria-hidden="true" />
+            {/* Spinning active ring */}
+            <div className={`${styles.artRing} ${isPlaying ? styles.visible : ''}`} />
           </div>
 
           {/* Track Info */}
-          <div className={styles.info} ref={trackRef}>
-            <span className={styles.trackName}>{track.title}</span>
-            <span className={styles.artistName}>{track.artist}</span>
+          <div className={styles.info}>
+            <span className={styles.title} title={track.title}>
+              {track.title}
+            </span>
+            <span className={styles.artist} title={track.artist}>
+              {track.artist}
+            </span>
           </div>
 
           {/* Controls */}
           <div className={styles.controls}>
-            {/* Menu / Queue */}
+            {/* Vibe Modal Menu */}
             <button
-              className={`${styles.iconBtn} ${styles.menuBtn}`}
+              className={styles.ctrlBtn}
               onClick={onMenuClick}
-              aria-label="Queue"
-              title="Queue"
+              title="Vibes Menu"
+              aria-label="Open vibe menu"
             >
               ☰
             </button>
 
-            {/* Previous */}
+            {/* Prev */}
             <button
-              className={styles.iconBtn}
+              className={styles.ctrlBtn}
               onClick={onPrev}
+              title="Previous Track"
               aria-label="Previous track"
-              title="Previous"
             >
               ⏮
             </button>
 
             {/* Play / Pause */}
             <button
-              className={`${styles.iconBtn} ${styles.playBtn}`}
+              className={styles.playBtn}
               onClick={onTogglePlay}
-              aria-label={isPlaying ? 'Pause' : 'Play'}
               title={isPlaying ? 'Pause' : 'Play'}
+              aria-label={isPlaying ? 'Pause' : 'Play'}
             >
               {isPlaying ? '⏸' : '▶'}
             </button>
 
             {/* Next */}
             <button
-              className={styles.iconBtn}
+              className={styles.ctrlBtn}
               onClick={onNext}
+              title="Next Track"
               aria-label="Next track"
-              title="Next"
             >
               ⏭
             </button>
           </div>
+
         </div>
 
-        {/* ── Progress row ── */}
+        {/* ── Progress bar row ── */}
         <div className={styles.progressRow}>
-          <span className={styles.timeLabel}>{formatTime(elapsed)}</span>
+          <span className={`${styles.time} ${styles.elapsed}`}>
+            {formatTime(elapsed)}
+          </span>
 
           <div
-            className={styles.progressTrack}
-            onClick={handleProgressClick}
-            onKeyDown={handleProgressKeyDown}
+            className={styles.progressBar}
             role="slider"
-            aria-label="Song progress"
+            aria-label="Seek track"
             aria-valuemin={0}
             aria-valuemax={100}
             aria-valuenow={Math.round(progressPct)}
             tabIndex={0}
+            onClick={handleProgressClick}
+            onKeyDown={handleProgressKeyDown}
           >
-            <div
-              className={styles.progressFill}
-              style={{ width: `${progressPct}%` }}
-            />
-            <div
-              className={styles.progressThumb}
-              style={{ left: `${progressPct}%` }}
-              aria-hidden="true"
-            />
+            <div className={styles.progressTrack} ref={trackRef}>
+              <div
+                className={styles.progressFill}
+                style={{ width: `${progressPct}%` }}
+              />
+              <div
+                className={styles.progressThumb}
+                style={{ left: `calc(${progressPct}% - 5px)` }}
+              />
+            </div>
           </div>
 
-          <span className={styles.timeLabel}>{formatTime(duration)}</span>
+          <span className={`${styles.time} ${styles.total}`}>
+            {formatTime(duration)}
+          </span>
         </div>
 
       </div>
