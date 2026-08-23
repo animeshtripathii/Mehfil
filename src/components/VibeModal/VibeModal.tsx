@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import type { VibeId } from '../../types';
 import { VIBES } from '../../data/tracks';
 import styles from './VibeModal.module.css';
@@ -10,9 +10,9 @@ interface VibeModalProps {
 }
 
 const BUTTON_CFG: Record<number, { label: string; g1: string; g2: string }> = {
-  0: { label: 'ਬਜਾਓ',      g1: '#ffae00', g2: '#ff6b00' },
-  1: { label: 'ਚਲਾਓ',      g1: '#ff3fa4', g2: '#c026d3' },
-  2: { label: 'ਸ਼ੁਰੂ ਕਰੋ', g1: '#ff6b00', g2: '#ffae00' },
+  0: { label: 'ENTER',      g1: '#ffae00', g2: '#ff6b00' },
+  1: { label: 'ENTER',      g1: '#ff3fa4', g2: '#c026d3' },
+  2: { label: 'ENTER',      g1: '#ff6b00', g2: '#ffae00' },
 };
 
 const CARD_TAGS: Record<number, string[]> = {
