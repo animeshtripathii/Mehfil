@@ -60,9 +60,7 @@ export const VIBES: Vibe[] = [
 // ─── All Full Length 320kbps Audio Tracks ──────────────────────────────────────
 export const TRACKS: Track[] = [
 
-  // ═════════════════════════════════════════════════════════════════════════════
-  // ── Vibe 0: Mehfil ☕ (Yaariyan / Pind De Nagme / Desi Folk)
-  // ═════════════════════════════════════════════════════════════════════════════
+  // ── Vibe 0: Mehfil ☕ ──
   {
     id: 0,
     vibe: 0 as VibeId,
@@ -85,7 +83,7 @@ export const TRACKS: Track[] = [
     dur: '3:10',
     durationSec: 190,
     streamUrl: 'https://aac.saavncdn.com/612/23bcc68943d822393a70a4f5e5f21e6c_320.mp4',
-    coverArt: 'https://c.saavncdn.com/612/Laiye-Je-Yaarian-Soundtrack--Punjabi-2019-20190708170249-500x500.jpg',
+    coverArt: '',
     localSrc: '',
     cloudinaryId: '',
   },
@@ -98,7 +96,7 @@ export const TRACKS: Track[] = [
     dur: '3:24',
     durationSec: 204,
     streamUrl: 'https://aac.saavncdn.com/821/df6ef90fe280bd5dee031213a5becf0e_320.mp4',
-    coverArt: 'https://c.saavncdn.com/821/Putt-Jattan-De-Punjabi-2013-500x500.jpg',
+    coverArt: '',
     localSrc: '',
     cloudinaryId: '',
   },
@@ -111,7 +109,7 @@ export const TRACKS: Track[] = [
     dur: '3:26',
     durationSec: 206,
     streamUrl: 'https://aac.saavncdn.com/995/81ca231376ddd808afd6cbe65f13dcf4_320.mp4',
-    coverArt: 'https://c.saavncdn.com/995/Teri-Meri-Jodi-Punjabi-2022-20221128181655-500x500.jpg',
+    coverArt: '',
     localSrc: '',
     cloudinaryId: '',
   },
@@ -124,7 +122,7 @@ export const TRACKS: Track[] = [
     dur: '3:02',
     durationSec: 182,
     streamUrl: 'https://aac.saavncdn.com/186/0da2cc816e11da44531c8bf59cc296b2_320.mp4',
-    coverArt: 'https://c.saavncdn.com/186/Nusrat-Fateh-Ali-Khan-Urdu-2020-20200701140003-500x500.jpg',
+    coverArt: '',
     localSrc: '',
     cloudinaryId: '',
   },
@@ -137,14 +135,12 @@ export const TRACKS: Track[] = [
     dur: '3:38',
     durationSec: 218,
     streamUrl: 'https://aac.saavncdn.com/988/1133e125723074fcf9effb322c6d45e3_320.mp4',
-    coverArt: 'https://c.saavncdn.com/988/Babbu-Maan-Punjabi-2019-20190823055452-500x500.jpg',
+    coverArt: '',
     localSrc: '',
     cloudinaryId: '',
   },
 
-  // ═════════════════════════════════════════════════════════════════════════════
-  // ── Vibe 1: Khaab ❤️ (Romantic / Dreamy / Soulful Lofi)
-  // ═════════════════════════════════════════════════════════════════════════════
+  // ── Vibe 1: Khaab ❤️ ──
   {
     id: 6,
     vibe: 1 as VibeId,
@@ -167,7 +163,7 @@ export const TRACKS: Track[] = [
     dur: '2:57',
     durationSec: 177,
     streamUrl: 'https://aac.saavncdn.com/890/a18aabc4681dc6c334d5d29b67e84a0f_320.mp4',
-    coverArt: 'https://c.saavncdn.com/890/Excuses-Punjabi-2020-20201201083756-500x500.jpg',
+    coverArt: '',
     localSrc: '',
     cloudinaryId: '',
   },
@@ -180,7 +176,7 @@ export const TRACKS: Track[] = [
     dur: '4:14',
     durationSec: 254,
     streamUrl: 'https://aac.saavncdn.com/973/76216adb3df5ef476f948891b40efb7a_320.mp4',
-    coverArt: 'https://c.saavncdn.com/973/Brown-Munde-Punjabi-2020-20200915152843-500x500.jpg',
+    coverArt: '',
     localSrc: '',
     cloudinaryId: '',
   },
@@ -193,7 +189,7 @@ export const TRACKS: Track[] = [
     dur: '2:34',
     durationSec: 154,
     streamUrl: 'https://aac.saavncdn.com/671/50b256cc8e60dc8b0243f5e0767e8467_320.mp4',
-    coverArt: 'https://c.saavncdn.com/671/With-You-Punjabi-2023-20230810173256-500x500.jpg',
+    coverArt: '',
     localSrc: '',
     cloudinaryId: '',
   },
@@ -206,7 +202,7 @@ export const TRACKS: Track[] = [
     dur: '3:54',
     durationSec: 234,
     streamUrl: 'https://aac.saavncdn.com/070/962686d17e2504378f5270cb2a64632d_320.mp4',
-    coverArt: 'https://c.saavncdn.com/070/Hidden-Gems-Punjabi-2021-20211119053805-500x500.jpg',
+    coverArt: '',
     localSrc: '',
     cloudinaryId: '',
   },
@@ -219,7 +215,7 @@ export const TRACKS: Track[] = [
     dur: '2:35',
     durationSec: 155,
     streamUrl: 'https://aac.saavncdn.com/538/727114725cd7ec508b1df0a7e4515e5e_320.mp4',
-    coverArt: 'https://c.saavncdn.com/538/Making-Memories-Punjabi-2023-20230818042456-500x500.jpg',
+    coverArt: '',
     localSrc: '',
     cloudinaryId: '',
   },
@@ -232,14 +228,12 @@ export const TRACKS: Track[] = [
     dur: '3:10',
     durationSec: 190,
     streamUrl: 'https://aac.saavncdn.com/209/88cd9a1cc0af8768d67272876bb09851_320.mp4',
-    coverArt: 'https://c.saavncdn.com/209/MoonChild-Era-Punjabi-2021-20210822054238-500x500.jpg',
+    coverArt: '',
     localSrc: '',
     cloudinaryId: '',
   },
 
-  // ═════════════════════════════════════════════════════════════════════════════
-  // ── Vibe 2: GediRoute 🏍️ (Highway Bass / Night Drive / Heavy Thumps)
-  // ═════════════════════════════════════════════════════════════════════════════
+  // ── Vibe 2: GediRoute 🏍️ ──
   {
     id: 13,
     vibe: 2 as VibeId,
@@ -249,7 +243,7 @@ export const TRACKS: Track[] = [
     dur: '4:30',
     durationSec: 270,
     streamUrl: 'https://aac.saavncdn.com/609/852628435c98083dfe217c1cfa731bb5_320.mp4',
-    coverArt: 'https://c.saavncdn.com/609/Moosetape-Punjabi-2021-20210514202517-500x500.jpg',
+    coverArt: 'https://c.saavncdn.com/609/Moosetape-Punjabi-2021-20260626155141-500x500.jpg',
     localSrc: '',
     cloudinaryId: '',
   },
@@ -262,7 +256,7 @@ export const TRACKS: Track[] = [
     dur: '3:53',
     durationSec: 233,
     streamUrl: 'https://aac.saavncdn.com/544/fa128b5b00df068d78bc50bf19bf137f_320.mp4',
-    coverArt: 'https://c.saavncdn.com/544/So-High-Punjabi-2017-500x500.jpg',
+    coverArt: '',
     localSrc: '',
     cloudinaryId: '',
   },
@@ -275,7 +269,7 @@ export const TRACKS: Track[] = [
     dur: '3:31',
     durationSec: 211,
     streamUrl: 'https://aac.saavncdn.com/588/024ce8dec4bee4a2104ac4299b6835c9_320.mp4',
-    coverArt: 'https://c.saavncdn.com/588/PBX-1-Punjabi-2018-20181105-500x500.jpg',
+    coverArt: '',
     localSrc: '',
     cloudinaryId: '',
   },
@@ -288,7 +282,7 @@ export const TRACKS: Track[] = [
     dur: '3:34',
     durationSec: 214,
     streamUrl: 'https://aac.saavncdn.com/552/44035100d2aab3af5226718086f29523_320.mp4',
-    coverArt: 'https://c.saavncdn.com/552/Four-You-Punjabi-2023-20230204043135-500x500.jpg',
+    coverArt: '',
     localSrc: '',
     cloudinaryId: '',
   },
@@ -301,7 +295,7 @@ export const TRACKS: Track[] = [
     dur: '3:44',
     durationSec: 224,
     streamUrl: 'https://aac.saavncdn.com/597/ce842951d6cde3c4355046ca5e250809_320.mp4',
-    coverArt: 'https://c.saavncdn.com/597/G-O-A-T--Punjabi-2020-20200729053818-500x500.jpg',
+    coverArt: '',
     localSrc: '',
     cloudinaryId: '',
   },
@@ -314,7 +308,7 @@ export const TRACKS: Track[] = [
     dur: '3:09',
     durationSec: 189,
     streamUrl: 'https://aac.saavncdn.com/924/30b763b786f4a33402b0441c84bbe305_320.mp4',
-    coverArt: 'https://c.saavncdn.com/924/International-Villager-Punjabi-2011-20220623204907-500x500.jpg',
+    coverArt: '',
     localSrc: '',
     cloudinaryId: '',
   },
@@ -327,7 +321,7 @@ export const TRACKS: Track[] = [
     dur: '3:47',
     durationSec: 227,
     streamUrl: 'https://aac.saavncdn.com/089/64beffa430e4c948223ec6bfcc3a13f0_320.mp4',
-    coverArt: 'https://c.saavncdn.com/089/Winning-Speech-Punjabi-2024-20240209043232-500x500.jpg',
+    coverArt: '',
     localSrc: '',
     cloudinaryId: '',
   },
@@ -340,7 +334,7 @@ export const TRACKS: Track[] = [
     dur: '4:50',
     durationSec: 290,
     streamUrl: 'https://aac.saavncdn.com/154/d8e13e5a519f8392580616d3931b8adb_320.mp4',
-    coverArt: 'https://c.saavncdn.com/154/Same-Beef-Punjabi-2019-20190917082103-500x500.jpg',
+    coverArt: '',
     localSrc: '',
     cloudinaryId: '',
   },
