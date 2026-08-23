@@ -12,18 +12,19 @@ interface GabruProfile {
 
 const GABRUS: GabruProfile[] = [
   {
-    name: 'Animesh Tripathi',
-    githubUser: '@animeshtripathii',
-    url: 'https://github.com/animeshtripathii',
-    initials: 'AT',
-  },
-  {
     name: 'Harmeet Singh',
     githubUser: '@HarmeettSinghh',
     url: 'https://github.com/HarmeettSinghh',
     initials: 'HS',
     isHarmeet: true,
   },
+  {
+    name: 'Animesh Tripathi',
+    githubUser: '@animeshtripathii',
+    url: 'https://github.com/animeshtripathii',
+    initials: 'AT',
+  },
+
 ];
 
 const GabruOnline: React.FC = () => {

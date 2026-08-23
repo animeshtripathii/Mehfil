@@ -82,12 +82,12 @@ const Player: React.FC<PlayerProps> = ({
 
           {/* Controls */}
           <div className={styles.controls}>
-            {/* Vibe Modal Menu */}
+            {/* Song Queue / Playlist */}
             <button
               className={styles.ctrlBtn}
               onClick={onMenuClick}
-              title="Vibes Menu"
-              aria-label="Open vibe menu"
+              title="Song Queue & Playlist"
+              aria-label="Open song queue and playlist"
             >
               ☰
             </button>

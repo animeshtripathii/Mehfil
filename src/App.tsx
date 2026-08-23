@@ -2,12 +2,13 @@ import React, { useState, useCallback, useRef } from 'react';
 import type { VibeId } from './types';
 import { useAudioPlayer } from './hooks/useAudioPlayer';
 
-import TopNav      from './components/TopNav/TopNav';
-import Hero        from './components/Hero/Hero';
-import Player      from './components/Player/Player';
-import Toast       from './components/Toast/Toast';
-import VibeModal   from './components/VibeModal/VibeModal';
-import GabruOnline from './components/GabruOnline/GabruOnline';
+import TopNav         from './components/TopNav/TopNav';
+import Hero           from './components/Hero/Hero';
+import Player         from './components/Player/Player';
+import Toast          from './components/Toast/Toast';
+import VibeModal      from './components/VibeModal/VibeModal';
+import PlaylistDrawer from './components/PlaylistDrawer/PlaylistDrawer';
+import GabruOnline    from './components/GabruOnline/GabruOnline';
 
 import './styles/globals.css';
 import styles from './App.module.css';
@@ -34,6 +35,9 @@ const App: React.FC = () => {
   // ── First load modal state (starts open on first visit) ──
   const [isModalOpen, setIsModalOpen] = useState(true);
 
+  // ── Playlist Drawer State (slides in from top-right) ──
+  const [isPlaylistOpen, setIsPlaylistOpen] = useState(false);
+
   // ── Toast ──
   const [toastMsg,     setToastMsg]     = useState('');
   const [toastVisible, setToastVisible] = useState(false);
@@ -58,6 +62,12 @@ const App: React.FC = () => {
     handleNavChange(id);
     setIsModalOpen(false);
   }, [handleNavChange]);
+
+  // ── Playlist Track Selection handler ──
+  const handleSelectTrackFromPlaylist = useCallback((trackId: number) => {
+    player.selectTrack(trackId);
+    showToast(`Playing track #${trackId + 1}`);
+  }, [player, showToast]);
 
   const theme = THEME[navPage] ?? THEME[0];
 
@@ -87,13 +97,23 @@ const App: React.FC = () => {
         onPrev={player.prevTrack}
         onNext={player.nextTrack}
         onSeek={player.seek}
-        onMenuClick={() => setIsModalOpen(true)}
+        onMenuClick={() => setIsPlaylistOpen(true)}
       />
 
       <VibeModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onSelectVibe={handleModalSelectVibe}
+      />
+
+      <PlaylistDrawer
+        isOpen={isPlaylistOpen}
+        onClose={() => setIsPlaylistOpen(false)}
+        currentTrack={player.currentTrack}
+        isPlaying={player.isPlaying}
+        currentVibe={navPage}
+        onSelectTrack={handleSelectTrackFromPlaylist}
+        onSelectVibe={handleNavChange}
       />
 
       <GabruOnline />
